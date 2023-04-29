@@ -11,9 +11,6 @@ const pullData = require("./OverpassQuery");
 const app = express();
 const port = 3007;
 
-const db = new Database();
-db.init();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
