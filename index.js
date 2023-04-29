@@ -116,3 +116,17 @@ app.get("/:map/pull", async (req, res) => {
 app.listen(port, () => {
   console.log(`OpenAED listening on http://localhost:${port}`);
 });
+
+setInterval(() => {
+  console.log("Pulling data from OpenStreetMap");
+  const maps = fs.readdirSync(`./maps/`).map((file) => {
+    return file.replace(".json", "");
+  });
+
+  maps.forEach((map) => {
+    const maps = fs.readFileSync(`./maps/${map}.json`);
+    const results = JSON.parse(maps);
+
+    pullData(map, results.places);
+  });
+}, 1800000); // 30 minutes
