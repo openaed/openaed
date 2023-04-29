@@ -3,7 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const mssql = require("mssql");
+const package = require("./package.json");
+
 const fs = require("fs");
 
 const pullData = require("./OverpassQuery");
@@ -16,7 +17,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.type = "application/json";
-  res.send({ msg: "Welcome to the OpenAED API" });
+  res.send({
+    msg: "Welcome to the OpenAED API",
+    data: {
+      version: package.version,
+      endpoints: [
+        {
+          path: "/maps",
+          description: "Get a list of all available maps",
+        },
+        {
+          path: "/:map",
+          description: "Get all AEDs in a map",
+        },
+        {
+          path: "/:map/pull",
+          description: "Pull data from OpenStreetMap",
+        },
+      ],
+    },
+  });
+});
+
+app.get("/maps", (req, res) => {
+  res.type = "application/json";
+  const maps = fs.readdirSync(`./maps/`).map((file) => {
+    return file.replace(".json", "");
+  });
+  res.send({ msg: "Success", data: maps });
 });
 
 app.get("/:map", (req, res) => {
