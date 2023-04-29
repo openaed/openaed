@@ -23,13 +23,17 @@ app.get("/:map", (req, res) => {
   res.type = "application/json";
   const map = req.params.map;
 
-  const maps = fs.readFileSync(`./data/${map}.json`);
-  const results = JSON.parse(maps);
+  try {
+    const maps = fs.readFileSync(`./data/${map}.json`);
+    const results = JSON.parse(maps);
 
-  if (!results) {
+    if (!results) {
+      res.status(404).send({ msg: "Not found", data: null });
+    } else {
+      res.send({ msg: "Success", data: results });
+    }
+  } catch (e) {
     res.status(404).send({ msg: "Not found", data: null });
-  } else {
-    res.send({ msg: "Success", data: results });
   }
 });
 
@@ -37,15 +41,19 @@ app.get("/:map/pull", async (req, res) => {
   res.type = "application/json";
   const map = req.params.map;
 
-  const maps = fs.readFileSync(`./maps/${map}.json`);
-  const results = JSON.parse(maps);
+  try {
+    const maps = fs.readFileSync(`./maps/${map}.json`);
+    const results = JSON.parse(maps);
 
-  pullData(map, results.places);
+    pullData(map, results.places);
 
-  if (!results) {
+    if (!results) {
+      res.status(404).send({ msg: "Not found", data: null });
+    } else {
+      res.send({ msg: "Success", data: results });
+    }
+  } catch (e) {
     res.status(404).send({ msg: "Not found", data: null });
-  } else {
-    res.send({ msg: "Success", data: results });
   }
 });
 
