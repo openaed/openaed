@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const package = require("./package.json");
 
 const fs = require("fs");
+const cors = require("cors");
 
 const pullData = require("./OverpassQuery");
 
@@ -14,6 +15,7 @@ const port = 3007;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.type = "application/json";
