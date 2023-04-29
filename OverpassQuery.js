@@ -5,7 +5,6 @@
 // Not going to bother explaining this code.
 
 const fs = require("fs");
-const { DateTime } = require("mssql");
 const query_overpass = require("query-overpass");
 
 function pullData(name, places) {
