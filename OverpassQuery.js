@@ -10,19 +10,18 @@ const query_overpass = require("query-overpass");
 function pullData(name, places) {
   let areas = "";
   places.forEach((place) => {
-    areas += `{{geocodeArea:${place}}}; `;
+    areas += `\narea[name="${place}"][admin_level=8];`;
   });
 
   const query = `
-  [out:json][timeout:25];
-(${areas})->.searchArea;
-(
-  node["emergency"="defibrillator"](area.searchArea);
-);
+[out:json][timeout:25];
+(${areas}
+  )->.a;
+  node[emergency=defibrillator](area.a);
+  out;
 out body;
 >;
-out skel qt;
-  `;
+`;
 
   console.log(query);
 
