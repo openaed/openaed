@@ -1,4 +1,7 @@
 {
   "name": "Amsterdam",
-  "places": ["Amsterdam"]
+  "places": ["Amsterdam"],
+  "lat": 52.3708,
+  "lon": 4.8951,
+  "zoom": 13
 }

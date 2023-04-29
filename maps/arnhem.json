@@ -1,4 +1,7 @@
 {
   "name": "Arnhem",
-  "places": ["Arnhem", "Huissen", "Rheden", "Westervoort", "Elst", "Renkum"]
+  "places": ["Arnhem", "Huissen", "Rheden", "Westervoort", "Elst", "Renkum"],
+  "lat": 51.9601,
+  "lon": 5.9223,
+  "zoom": 12
 }

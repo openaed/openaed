@@ -16,5 +16,8 @@
     "Maasbommel",
     "Wijchen",
     "Beuningen"
-  ]
+  ],
+  "lat": 51.857,
+  "lon": 5.6336,
+  "zoom": 12
 }

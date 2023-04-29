@@ -1,4 +1,7 @@
 {
   "name": "Nijmegen",
-  "places": ["Nijmegen", "Beuningen", "Heumen", "Wijchen"]
+  "places": ["Nijmegen", "Beuningen", "Heumen", "Wijchen"],
+  "lat": 51.8353,
+  "lon": 5.8428,
+  "zoom": 13
 }
