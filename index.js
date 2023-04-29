@@ -37,6 +37,10 @@ app.get("/", (req, res) => {
           path: "/:map/pull",
           description: "Pull data from OpenStreetMap",
         },
+        {
+          path: "/:map/places",
+          description: "Get all places in a map",
+        },
       ],
       maps: maps,
     },
@@ -57,6 +61,24 @@ app.get("/:map", (req, res) => {
 
   try {
     const maps = fs.readFileSync(`./data/${map}.json`);
+    const results = JSON.parse(maps);
+
+    if (!results) {
+      res.status(404).send({ msg: "Not found", data: null });
+    } else {
+      res.send({ msg: "Success", data: results });
+    }
+  } catch (e) {
+    res.status(500).send({ msg: "Internal fault", data: { error: e } });
+  }
+});
+
+app.get("/:map/places", (req, res) => {
+  res.type = "application/json";
+  const map = req.params.map;
+
+  try {
+    const maps = fs.readFileSync(`./maps/${map}.json`);
     const results = JSON.parse(maps);
 
     if (!results) {
