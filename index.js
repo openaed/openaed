@@ -33,7 +33,7 @@ app.get("/:map", (req, res) => {
       res.send({ msg: "Success", data: results });
     }
   } catch (e) {
-    res.status(404).send({ msg: "Not found", data: null });
+    res.status(500).send({ msg: "Internal fault", data: { error: e } });
   }
 });
 
@@ -53,7 +53,7 @@ app.get("/:map/pull", async (req, res) => {
       res.send({ msg: "Success", data: results });
     }
   } catch (e) {
-    res.status(404).send({ msg: "Not found", data: null });
+    res.status(500).send({ msg: "Internal fault", data: { error: e } });
   }
 });
 
