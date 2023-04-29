@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const mssql = require("mssql");
 const fs = require("fs");
 
-const Database = require("./Database");
 const pullData = require("./OverpassQuery");
 
 const app = express();
