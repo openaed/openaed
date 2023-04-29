@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.type = "application/json";
+  const maps = fs.readdirSync(`./maps/`).map((file) => {
+    return file.replace(".json", "");
+  });
   res.send({
     msg: "Welcome to the OpenAED API",
     data: {
@@ -35,6 +38,7 @@ app.get("/", (req, res) => {
           description: "Pull data from OpenStreetMap",
         },
       ],
+      maps: maps,
     },
   });
 });
