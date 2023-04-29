@@ -1,22 +1,6 @@
 {
   "name": "Maas en Waal",
-  "places": [
-    "Druten",
-    "Beneden-Leeuwen",
-    "Wamel",
-    "Alphen",
-    "Altforst",
-    "Appeltern",
-    "Batenburg",
-    "Bergharen",
-    "Boven-Leeuwen",
-    "Dreumel",
-    "Hernen",
-    "Horssen",
-    "Maasbommel",
-    "Wijchen",
-    "Beuningen"
-  ],
+  "places": ["Druten", "West Maas en Waal", "Wijchen", "Beuningen"],
   "lat": 51.857,
   "lon": 5.6336,
   "zoom": 12
