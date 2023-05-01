@@ -35,7 +35,11 @@ out body;
 
   query_overpass(query, (error, data) => {
     if (error) console.log(error);
+    let idsParsed = [];
+
     data.features.forEach((feature) => {
+      if (idsParsed.includes(feature.properties.id)) return;
+      idsParsed.push(feature.properties.id);
       addParsedData({
         id: feature.properties.id,
         access: feature.properties.tags.access
