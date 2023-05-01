@@ -72,6 +72,16 @@ out body;
         image: feature.properties.tags.image
           ? feature.properties.tags.image
           : null,
+        "defibrillator:cabinet": feature.properties.tags[
+          "defibrillator:cabinet"
+        ]
+          ? feature.properties.tags["defibrillator:cabinet"]
+          : null,
+        "defibrillator:cabinet:manufacturer": feature.properties.tags[
+          "defibrillator:cabinet:manufacturer"
+        ]
+          ? feature.properties.tags["defibrillator:cabinet:manufacturer"]
+          : null,
       });
     });
   });
