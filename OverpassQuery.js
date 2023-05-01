@@ -82,6 +82,9 @@ out body;
         ]
           ? feature.properties.tags["defibrillator:cabinet:manufacturer"]
           : null,
+        note: feature.properties.tags.note
+          ? feature.properties.tags.note
+          : null,
       });
     });
   });
