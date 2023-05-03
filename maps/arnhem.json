@@ -9,7 +9,7 @@
     "area[name=\"Elst\"][admin_level=10]",
     "area[name=\"Driel\"][admin_level=10]"
   ],
-  "description": "Gemeentes Arnhem, Westervoort, Rheden en Renkum en de plaatsen Elst, Huissen en Driel",
+  "description": "gemeentes Arnhem, Westervoort, Rheden en Renkum en de plaatsen Elst, Huissen en Driel",
   "lat": 51.9601,
   "lon": 5.9223,
   "zoom": 12
