@@ -57,6 +57,34 @@ app.get("/maps", (req, res) => {
   res.send({ msg: "Success", data: maps });
 });
 
+app.get("/all/pull", async (req, res) => {
+  res.type = "application/json";
+
+  try {
+    const maps = fs.readdirSync(`./maps/`);
+
+    maps.forEach((map) => {
+      const maps = fs.readFileSync(`./maps/${map}`);
+      const results = JSON.parse(maps);
+
+      map = map.replace(".json", "");
+
+      pullData(map, results.places);
+    });
+
+    res.send({
+      msg: "Success",
+      data: {
+        maps: maps.map((m) => {
+          return m.replace(".json", "");
+        }),
+      },
+    });
+  } catch (e) {
+    res.status(500).send({ msg: "Internal fault", data: { error: e } });
+  }
+});
+
 app.get("/:map", (req, res) => {
   res.type = "application/json";
   const map = req.params.map;
