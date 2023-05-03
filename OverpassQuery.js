@@ -54,7 +54,7 @@ out body;
           : null,
         operator: feature.properties.tags.operator
           ? feature.properties.tags.operator
-          : "Onbekende beheerder",
+          : null,
         "operator:website": feature.properties.tags["operator:website"]
           ? feature.properties.tags["operator:website"]
           : null,
