@@ -1,6 +1,12 @@
 {
   "name": "Maas en Waal",
-  "places": ["Druten", "West Maas en Waal", "Wijchen", "Beuningen"],
+  "selectors": [
+    "area[name=\"Druten\"][admin_level=8]",
+    "area[name=\"West Maas en Waal\"][admin_level=8]",
+    "area[name=\"Wijchen\"][admin_level=8]",
+    "area[name=\"Beuningen\"][admin_level=8]"
+  ],
+  "description": "Gemeentes Druten, Beuningen, Maas en Waal en Wijchen",
   "lat": 51.857,
   "lon": 5.6336,
   "zoom": 12

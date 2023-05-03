@@ -7,11 +7,8 @@
 const fs = require("fs");
 const query_overpass = require("query-overpass");
 
-function pullData(name, places) {
-  let areas = "";
-  places.forEach((place) => {
-    areas += `\narea[name="${place}"][admin_level=8];`;
-  });
+function pullData(name, selectors) {
+  let areas = selectors.join("; ") + ";";
 
   const query = `
 [out:json][timeout:25];

@@ -69,7 +69,7 @@ app.get("/all/pull", async (req, res) => {
 
       map = map.replace(".json", "");
 
-      pullData(map, results.places);
+      pullData(map, results.selectors);
     });
 
     res.send({
@@ -129,7 +129,7 @@ app.get("/:map/pull", async (req, res) => {
     const maps = fs.readFileSync(`./maps/${map}.json`);
     const results = JSON.parse(maps);
 
-    pullData(map, results.places);
+    pullData(map, results.selectors);
 
     if (!results) {
       res.status(404).send({ msg: "Not found", data: null });
@@ -155,6 +155,6 @@ setInterval(() => {
     const maps = fs.readFileSync(`./maps/${map}.json`);
     const results = JSON.parse(maps);
 
-    pullData(map, results.places);
+    pullData(map, results.selectors);
   });
 }, 1800000); // 30 minutes

@@ -1,6 +1,6 @@
 {
   "name": "Amsterdam",
-  "places": ["Amsterdam"],
+  "selectors": ["area[name=\"Amsterdam\"][admin_level=8]"],
   "lat": 52.3708,
   "lon": 4.8951,
   "zoom": 13

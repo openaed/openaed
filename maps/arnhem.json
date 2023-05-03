@@ -1,6 +1,15 @@
 {
   "name": "Arnhem",
-  "places": ["Arnhem", "Huissen", "Rheden", "Westervoort", "Elst", "Renkum"],
+  "selectors": [
+    "area[name=\"Arnhem\"][admin_level=8]",
+    "area[name=\"Westervoort\"][admin_level=8]",
+    "area[name=\"Rheden\"][admin_level=8]",
+    "area[name=\"Renkum\"][admin_level=8]",
+    "area[name=\"Huissen\"][admin_level=10]",
+    "area[name=\"Elst\"][admin_level=10]",
+    "area[name=\"Driel\"][admin_level=10]"
+  ],
+  "description": "Gemeentes Arnhem, Westervoort, Rheden en Renkum en de plaatsen Elst, Huissen en Driel",
   "lat": 51.9601,
   "lon": 5.9223,
   "zoom": 12
