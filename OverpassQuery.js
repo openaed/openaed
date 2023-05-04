@@ -67,6 +67,9 @@ out body;
         manufacturer: feature.properties.tags.manufacturer
           ? feature.properties.tags.manufacturer
           : null,
+        model: feature.properties.tags.model
+          ? feature.properties.tags.model
+          : null,
         level: feature.properties.tags.level
           ? feature.properties.tags.level
           : 0,
