@@ -55,8 +55,8 @@ out body;
         "operator:website": feature.properties.tags["operator:website"]
           ? feature.properties.tags["operator:website"]
           : null,
-        phone: feature.properties.tags.phone
-          ? feature.properties.tags.phone
+        phone: feature.properties.tags["operator:phone"]
+          ? feature.properties.tags["operator:phone"]
           : null,
         location: feature.properties.tags["defibrillator:location"]
           ? feature.properties.tags["defibrillator:location"]
