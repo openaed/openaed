@@ -145,7 +145,7 @@ app.listen(port, () => {
   console.log(`OpenAED listening on http://localhost:${port}`);
 });
 
-setInterval(() => {
+const getAllData = () => {
   console.log("Pulling data from OpenStreetMap");
   const maps = fs.readdirSync(`./maps/`).map((file) => {
     return file.replace(".json", "");
@@ -157,4 +157,7 @@ setInterval(() => {
 
     pullData(map, results.selectors);
   });
-}, 1800000); // 30 minutes
+};
+
+getAllData();
+setInterval(getAllData, 1800000); // 30 minutes
