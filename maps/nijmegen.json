@@ -4,9 +4,10 @@
     "area[name=\"Nijmegen\"][admin_level=8]",
     "area[name=\"Beuningen\"][admin_level=8]",
     "area[name=\"Heumen\"][admin_level=8]",
-    "area[name=\"Wijchen\"][admin_level=8]"
+    "area[name=\"Wijchen\"][admin_level=8]",
+    "area[name=\"Berg en Dal\"][admin_level=8]"
   ],
-  "description": "gemeentes Nijmegen, Beuningen, Heumen en Wijchen",
+  "description": "gemeentes Nijmegen, Beuningen, Heumen, Wijchen en Berg en Dal",
   "lat": 51.8353,
   "lon": 5.8428,
   "zoom": 13
