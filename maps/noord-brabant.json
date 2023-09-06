@@ -1,0 +1,8 @@
+{
+  "name": "Noord-Brabant",
+  "selectors": ["area[name=\"Noord-Brabant\"][admin_level=4]"],
+  "description": "provincie Noord-Brabant",
+  "lat": 51.8353,
+  "lon": 5.8428,
+  "zoom": 13
+}
