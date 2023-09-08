@@ -59,9 +59,11 @@ out body;
           ? feature.properties.tags["operator:phone"]
           : null,
         location: feature.properties.tags["defibrillator:location"]
-          ? feature.properties.tags["defibrillator:location"] |
-            feature.properties.tags["defibrillator:location:nl"]
+          ? feature.properties.tags["defibrillator:location"]
           : "Onbekend",
+        "location:nl": feature.properties.tags["defibrillator:location:nl"]
+          ? feature.properties.tags["defibrillator:location:nl"]
+          : null,
         "location:en": feature.properties.tags["defibrillator:location:en"]
           ? feature.properties.tags["defibrillator:location:en"]
           : null,
