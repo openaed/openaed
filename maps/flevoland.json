@@ -1,0 +1,8 @@
+{
+  "name": "Flevoland",
+  "selectors": ["area[name=\"Flevoland\"][admin_level=4]"],
+  "description": "provincie Flevoland",
+  "lat": 52.4484,
+  "lon": 5.5028,
+  "zoom": 10
+}

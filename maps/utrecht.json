@@ -1,0 +1,10 @@
+{
+  "name": "Utrecht",
+  "selectors": [
+      "area[name=\"Utrecht\"][admin_level=4]"
+  ],
+  "description": "provincie Utrecht",
+  "lat": 52.0888,
+  "lon": 5.2075,
+  "zoom": 10
+}
