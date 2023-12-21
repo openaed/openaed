@@ -67,6 +67,9 @@ out body;
         "location:en": feature.properties.tags["defibrillator:location:en"]
           ? feature.properties.tags["defibrillator:location:en"]
           : null,
+        opening_hours: feature.properties.tags["opening_hours"]
+          ? feature.properties.tags["opening_hours"]
+          : null,
         manufacturer: feature.properties.tags.manufacturer
           ? feature.properties.tags.manufacturer
           : null,
