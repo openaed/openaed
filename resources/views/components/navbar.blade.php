@@ -18,8 +18,7 @@
                     href="{{ route('statistics') }}">Statistieken</a>
                 <a class="nav-link @if (Route::is('contact')) active @endif"
                     href="{{ route('contact') }}">Contact</a>
-                <a target="_blank" href="https://github.com/openaed/backend" class="nav-link"><i
-                        class="bi bi-github"></i></a>
+                <a target="_blank" href="https://github.com/openaed" class="nav-link"><i class="bi bi-github"></i></a>
             </div>
         </div>
     </div>
