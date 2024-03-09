@@ -94,8 +94,10 @@
 
                     if (aed.indoor == true) {
                         indoor = "Ja";
-                        if (aed.level != 0) {
+                        if (aed.level != 0 && aed.level != null) {
                             level = ", op verdieping " + aed.level;
+                        } else if (aed.level == null) {
+                            level = "";
                         } else {
                             level = ", op de begane grond";
                         }
@@ -140,7 +142,7 @@
                         `<br><b>Slot:</b> ${aed.locked ? "Ja" : "Nee"}`; // Lock
                     if (aed.phone) popupContent +=
                         `<br><b>Telefoon:</b> ${aed.phone}`; // Operator phone number
-                    if (true) popupContent +=
+                    if (aed.location) popupContent +=
                         `<br><b>Exacte locatie:</b> ${aed.location}`; // Exact location
                     popupContent +=
                         `<br><b>Binnen:</b> ${indoor}${level}`; // Whether the AED is indoors
