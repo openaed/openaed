@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - {{ config('app.name') }}</title>
 
+    {{-- OpenGraph --}}
+    <meta property="og:title" content="@yield('title') - {{ config('app.name') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('images/logos/openaed.png') }}">
+    <meta property="og:description"
+        content="OpenAED is een open-source project dat als doel heeft om alle AED's in Nederland in kaart te brengen.">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="nl_NL">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
