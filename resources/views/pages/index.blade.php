@@ -8,7 +8,8 @@
         <table>
             <tr>
                 <td>
-                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-75" alt="Regular icon">
+                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-50 d-block d-md-none" alt="Regular icon">
+                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-75 d-none d-md-block" alt="Regular icon">
                 </td>
                 <td>
                     Openbaar toegankelijk
@@ -17,7 +18,8 @@
 
             <tr>
                 <td>
-                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-75" alt="Permissive icon">
+                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-50 d-block d-md-none" alt="Permissive icon">
+                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-75 d-none d-md-block" alt="Permissive icon">
                 </td>
                 <td>
                     Beperkt toegankelijk
@@ -26,7 +28,8 @@
 
             <tr>
                 <td>
-                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-75" alt="Private icon">
+                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-50 d-block d-md-none" alt="Private icon">
+                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-75 d-none d-md-block" alt="Private icon">
                 </td>
                 <td>
                     Geen toegang
@@ -35,7 +38,8 @@
 
             <tr>
                 <td>
-                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-75" alt="Unknown icon">
+                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-50 d-block d-md-none" alt="Unknown icon">
+                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-75 d-none d-md-block" alt="Unknown icon">
                 </td>
                 <td>
                     Toegang onbekend
