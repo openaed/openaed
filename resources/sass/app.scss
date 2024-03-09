@@ -64,3 +64,19 @@ html {
     float: left;
     border-bottom-width: 0;
 }
+
+.legend {
+    right: 0;
+    top: 10%;
+}
+
+.ui-element {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 0.5em;
+    background-color: #f8f9fa;
+    position: absolute;
+    z-index: 999;
+}

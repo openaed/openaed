@@ -3,6 +3,46 @@
 @section('title', 'Home')
 
 @section('content')
+    <div class="legend ui-element">
+        <h5>Legenda</h5>
+        <table>
+            <tr>
+                <td>
+                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-75" alt="Regular icon">
+                </td>
+                <td>
+                    Openbaar toegankelijk
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-75" alt="Permissive icon">
+                </td>
+                <td>
+                    Beperkt toegankelijk
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-75" alt="Private icon">
+                </td>
+                <td>
+                    Geen toegang
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-75" alt="Unknown icon">
+                </td>
+                <td>
+                    Toegang onbekend
+                </td>
+            </tr>
+        </table>
+    </div>
     <div id="map"></div>
 
     <script type="text/javascript">
