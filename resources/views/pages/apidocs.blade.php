@@ -23,11 +23,13 @@
         <div class="col">
             <h3>Endpoints</h3>
             <ul class="ps-3">
-                <li>Alle AEDs<br><code>{{ route('api.aed.all') }}</code></li>
+                <li>Alle AEDs<br><code>GET {{ route('api.aed.all') }}</code></li>
                 <li>Alle AEDs in een
-                    stad<br><code>{{ route('api.aed.city', ['city' => 'woonplaats', 'province' => 'provincie']) }}</code>
+                    woonplaats<br><code>GET
+                        {{ str_replace('woonplaats', '{woonplaats}', str_replace('provincie', '{provincie}', route('api.aed.city', ['city' => 'woonplaats', 'province' => 'provincie']))) }}</code>
                 </li>
-                <li>Alle AEDs in een provincie<br><code>{{ route('api.aed.province', ['province' => 'provincie']) }}</code>
+                <li>Alle AEDs in een provincie<br><code>GET
+                        {{ str_replace('provincie', '{provincie}', route('api.aed.province', ['province' => 'provincie'])) }}</code>
                 </li>
             </ul>
         </div>
