@@ -1,8 +1,0 @@
-{
-  "name": "Amsterdam",
-  "selectors": ["area[name=\"Amsterdam\"][admin_level=8]"],
-  "description": "gemeente Amsterdam",
-  "lat": 52.3708,
-  "lon": 4.8951,
-  "zoom": 13
-}
