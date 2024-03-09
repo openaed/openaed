@@ -16,7 +16,7 @@
                 <br>
                 Een AED is een Automatische Externe Defibrillator. Dit betekent dat de AED zelfstandig kan bepalen of een
                 schok
-                noodzakelijk is. De AED is daarom geschikt voor gebruik door leken.
+                noodzakelijk is.
                 <br>
                 <br>
                 De AED is een belangrijk onderdeel van de overlevingsketen bij een hartstilstand. De overlevingsketen
