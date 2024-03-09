@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->ipAddress('ip');
             $table->string('route');
             $table->string('method');
-            $table->text('api_key');
+            $table->text('api_key')->nullable();
             $table->timestamps();
         });
     }

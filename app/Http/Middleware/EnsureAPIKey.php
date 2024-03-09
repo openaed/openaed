@@ -23,14 +23,13 @@ class EnsureAPIKey
         $ip = $request->ip();
         $apiKey = $request->input('key');
 
-        if ($apiKey != null) {
-            $log = new AccessLog();
-            $log->ip = $ip;
-            $log->route = $request->path();
-            $log->method = $request->method();
-            $log->api_key = $apiKey;
-            $log->save();
-        }
+        $log = new AccessLog();
+        $log->ip = $ip;
+        $log->route = $request->path();
+        $log->method = $request->method();
+        $log->api_key = $apiKey ?? null;
+        $log->save();
+
 
         // Check if the IP is blacklisted
         $blacklistedIP = BlacklistedIP::where('ip', $ip)->first();
