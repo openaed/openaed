@@ -92,6 +92,8 @@ Route::get('import', function () {
         $defibModel->operator_website = $defibrillator['tags']['operator:website'] ?? null;
         if (isset ($defibrillator['tags']['phone:NL'])) {
             $defibModel->phone = $defibrillator['tags']['phone:NL'];
+        } else if (isset ($defibrillator['tags']['operator:phone'])) {
+            $defibModel->phone = $defibrillator['tags']['operator:phone'];
         } else {
             $defibModel->phone = $defibrillator['tags']['phone'] ?? null;
         }

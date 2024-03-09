@@ -92,7 +92,7 @@
                         access = "Openbaar"
                     }
 
-                    if (aed.indoor == "yes") {
+                    if (aed.indoor == true) {
                         indoor = "Ja";
                         if (aed.level != 0) {
                             level = ", op verdieping " + aed.level;
