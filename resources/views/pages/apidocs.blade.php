@@ -36,45 +36,34 @@
         <div class="col">
             <h3>Data</h3>
             <ul class="list-unstyled codeblock">
-                <li>{</li>
+                <li>[</li>
                 <ul class="ps-5 list-unstyled">
-                    <li>"meta" : {</li>
+                    <li>{</li>
                     <ul class="ps-5 list-unstyled">
-                        <li>"attribution": "Data provided in part by OpenStreetMap",</li>
-                        <li>"copyright": "https://www.openstreetmap.org/copyright",</li>
-                        <li>"timestamp": 1709974508</li>
+                        <li>"id": 56,</li>
+                        <li>"osm_id": 6640032350,</li>
+                        <li>"city": "Nijmegen",</li>
+                        <li>"province": "Gelderland",</li>
+                        <li>"latitude": "51.8453705",</li>
+                        <li>"longitude": "5.8666328",</li>
+                        <li>"access": "yes",</li>
+                        <li>"indoor": false,</li>
+                        <li>"operator": "Stichting AED Dukenburg",</li>
+                        <li>"operator_website": "https://aeddukenburg.nl",</li>
+                        <li>"phone": "+31 6 30894688",</li>
+                        <li>"location": "in een doos aan de muur, links naast de hoofdingang van de bibliotheek",</li>
+                        <li>"opening_hours": "24/7",</li>
+                        <li>"manufacturer": "Defibtech",</li>
+                        <li>"model": "Lifeline",</li>
+                        <li>"image": "https://commons.wikimedia.org/wiki/File:AED_at_Regionaal_Archief_Nijmegen.jpg",
+                        </li>
+                        <li>"cabinet": "vertical_door",</li>
+                        <li>"cabinet_manufacturer": "Aivia",</li>
+                        <li>"note": null,</li>
                     </ul>
-                    <li>},</li>
-                    <li>"result": [</li>
-                    <ul class="ps-5 list-unstyled">
-                        <li>{</li>
-                        <ul class="ps-5 list-unstyled">
-                            <li>"id": 56,</li>
-                            <li>"osm_id": 6640032350,</li>
-                            <li>"city": "Nijmegen",</li>
-                            <li>"province": "Gelderland",</li>
-                            <li>"latitude": "51.8453705",</li>
-                            <li>"longitude": "5.8666328",</li>
-                            <li>"access": "yes",</li>
-                            <li>"indoor": false,</li>
-                            <li>"operator": "Stichting AED Dukenburg",</li>
-                            <li>"operator_website": "https://aeddukenburg.nl",</li>
-                            <li>"phone": "+31 6 30894688",</li>
-                            <li>"location": "in een doos aan de muur, links naast de hoofdingang van de bibliotheek",</li>
-                            <li>"opening_hours": "24/7",</li>
-                            <li>"manufacturer": "Defibtech",</li>
-                            <li>"model": "Lifeline",</li>
-                            <li>"image": "https://commons.wikimedia.org/wiki/File:AED_at_Regionaal_Archief_Nijmegen.jpg",
-                            </li>
-                            <li>"cabinet": "vertical_door",</li>
-                            <li>"cabinet_manufacturer": "Aivia",</li>
-                            <li>"note": null,</li>
-                        </ul>
-                        <li>}</li>
-                    </ul>
-                    <li>]</li>
+                    <li>}</li>
                 </ul>
-                <li>}</li>
+                <li>]</li>
             </ul>
         </div>
     </div>
