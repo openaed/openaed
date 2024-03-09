@@ -35,23 +35,23 @@ class EnsureAPIKey
         $blacklistedIP = BlacklistedIP::where('ip', $ip)->first();
 
         if ($blacklistedIP !== null) {
-            return response('Forbidden', 403);
+            return response()->json(["message" => "Blocked"], 401);
         }
 
         if ($apiKey === null && !in_array($referer, ["dev.openaed.nl", "openaed.nl", "openaed.test"])) {
-            return response('Unauthorized', 401);
+            return response()->json(["message" => "No API key provided"], 401);
         }
 
         if ($apiKey != null && !in_array($referer, ["openaed.nl", "openaed.test"])) {
             // Check if the API key exists
             $dbKey = APIKey::where('key', $apiKey)->first();
 
-            // If no record returned, bad key
             $now = Carbon::now();
             $now->setTimezone('Europe/Amsterdam');
 
+            // If no record returned, bad key
             if ($dbKey === null || ($dbKey->valid_until < $now && $dbKey->valid_until !== null)) {
-                return response('Unauthorized', 401);
+                return response()->json(["message" => "Invalid API key"], 401);
             }
         }
 
