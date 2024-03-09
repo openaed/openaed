@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Models\AttributedResponse;
+use App\Models\Province;
+use Illuminate\Http\Request;
 use App\Models\Defibrillator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Models\AttributedResponse;
+use App\Http\Controllers\Controller;
 
 class DefibrillatorController extends Controller
 {
@@ -20,6 +21,11 @@ class DefibrillatorController extends Controller
     public function getByCity($province, $city): JsonResponse
     {
         $defibrillators = Defibrillator::where('city', $city)->where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
+        $province = Province::where('name', $province)->first();
+        // If province does not exist, return 400 (Bad Request)
+        if ($province == null) {
+            return response()->json(["message" =>"Invalid province", "options" => Province::all()->pluck('name')], 400);
+        }
         return response()->json(AttributedResponse::new($defibrillators));
     }
 
@@ -31,6 +37,11 @@ class DefibrillatorController extends Controller
      */
     public function getByProvince($province): JsonResponse
     {
+        $province = Province::where('name', $province)->first();
+        // If province does not exist, return 400 (Bad Request)
+        if ($province == null) {
+            return response()->json(["message" =>"Invalid province", "options" => Province::all()->pluck('name')], 400);
+        }
         $defibrillators = Defibrillator::where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         return response()->json(AttributedResponse::new($defibrillators));
     }
