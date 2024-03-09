@@ -23,7 +23,7 @@ class EnsureAPIKey
         $ip = $request->ip();
         $apiKey = $request->input('key');
 
-        if($apiKey != null) {
+        if ($apiKey != null) {
             $log = new AccessLog();
             $log->ip = $ip;
             $log->route = $request->path();
@@ -39,7 +39,7 @@ class EnsureAPIKey
             return response('Forbidden', 403);
         }
 
-        if ($apiKey === null && !in_array($referer, ["openaed.nl", "openaed.test"])) {
+        if ($apiKey === null && !in_array($referer, ["dev.openaed.nl", "openaed.nl", "openaed.test"])) {
             return response('Unauthorized', 401);
         }
 
