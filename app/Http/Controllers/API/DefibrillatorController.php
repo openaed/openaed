@@ -21,10 +21,10 @@ class DefibrillatorController extends Controller
     public function getByCity($province, $city): JsonResponse
     {
         $defibrillators = Defibrillator::where('city', $city)->where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
-        $province = Province::where('name', $province)->first();
+        $provinceObj = Province::where('name', $province)->first();
         // If province does not exist, return 400 (Bad Request)
-        if ($province == null) {
-            return response()->json(["message" =>"Invalid province", "options" => Province::all()->pluck('name')], 400);
+        if ($provinceObj == null) {
+            return response()->json(["message" => "Invalid province", "options" => Province::all()->pluck('name')], 400);
         }
         return response()->json(AttributedResponse::new($defibrillators));
     }
@@ -37,10 +37,10 @@ class DefibrillatorController extends Controller
      */
     public function getByProvince($province): JsonResponse
     {
-        $province = Province::where('name', $province)->first();
+        $provinceObj = Province::where('name', $province)->first();
         // If province does not exist, return 400 (Bad Request)
-        if ($province == null) {
-            return response()->json(["message" =>"Invalid province", "options" => Province::all()->pluck('name')], 400);
+        if ($provinceObj == null) {
+            return response()->json(["message" => "Invalid province", "options" => Province::all()->pluck('name')], 400);
         }
         $defibrillators = Defibrillator::where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         return response()->json(AttributedResponse::new($defibrillators));
@@ -51,12 +51,17 @@ class DefibrillatorController extends Controller
      *
      * @return JsonResponse
      */
-    public function all(): JsonResponse
+    public function all(Request $request): JsonResponse
     {
         $defibrillators = Defibrillator::all()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         return response()->json(AttributedResponse::new($defibrillators));
     }
 
+    /**
+     * Import defibrillators from OpenStreetMap
+     *
+     * @return void
+     */
     public static function import()
     {
         $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anwr%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29%3B%0Aout%20geom%3B";
