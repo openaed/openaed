@@ -14,6 +14,8 @@
                     een AED?</a>
                 <a class="nav-link @if (Route::is('docs')) active @endif" href="{{ route('docs') }}">API
                     documentatie</a>
+                <a class="nav-link @if (Route::is('statistics')) active @endif"
+                    href="{{ route('statistics') }}">Statistieken</a>
                 <a class="nav-link @if (Route::is('contact')) active @endif"
                     href="{{ route('contact') }}">Contact</a>
                 <a target="_blank" href="https://github.com/openaed/backend" class="nav-link"><i
