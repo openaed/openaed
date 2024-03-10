@@ -212,7 +212,7 @@
                     if (aed.note) popupContent +=
                         `<br><b>Opmerking:</b> ${aed.note}`; // Note
                     popupContent +=
-                        `<br><a target='_blank' href='https://www.openstreetmap.org/node/${aed.id}'>Bewerken op OpenStreetMap</a>`; // OSM link
+                        `<br><a target='_blank' href='https://www.openstreetmap.org/node/${aed.osm_id}'>Bewerken op OpenStreetMap</a>`; // OSM link
 
                     aedMarkerGroup.addLayer(L.marker([aed.latitude, aed.longitude], {
                         icon: icon
