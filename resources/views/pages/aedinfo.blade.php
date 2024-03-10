@@ -43,7 +43,7 @@
             </p>
         </div>
         <div class="col-12 col-md-6">
-            <img src="{{ asset('images/aed-rotaid.jpg') }}" class="img-fluid object-fit-cover" alt="AED">
+            <img src="{{ asset('images/aed_kampenaar.jpg') }}" class="img-fluid border rounded mb-3 mb-md-0" alt="AED">
         </div>
     </div>
 
