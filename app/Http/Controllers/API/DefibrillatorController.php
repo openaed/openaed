@@ -100,7 +100,15 @@ class DefibrillatorController extends Controller
                 } else {
                     $defibModel->city = null;
                 }
-                $defibModel->province = $nominatim['address']['state'] ?? null;
+
+                if (isset($nominatim['address']['state'])) {
+                    $defibModel->province = $nominatim['address']['state'];
+                } else if (isset($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
+                    $defibModel->province = $nominatim['address']['municipality'];
+                } else {
+                    $defibModel->province = null;
+                }
+
             }
 
             $defibModel->latitude = $defibrillator['lat'];
