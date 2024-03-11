@@ -18,8 +18,13 @@
                     href="{{ route('statistics') }}">Statistieken</a>
                 <a class="nav-link @if (Route::is('contact')) active @endif"
                     href="{{ route('contact') }}">Contact</a>
-                <a target="_blank" href="https://github.com/openaed" class="nav-link"><i class="bi bi-github"></i></a>
+                <a target="_blank" href="https://github.com/openaed" class="nav-link" title="GitHub"><i
+                        class="bi bi-github"></i></a>
             </div>
         </div>
+    </div>
+    <div class="navbar-nav ms-0">
+        <a target="_blank" href="https://ptdk.nl" class="nav-link d-none d-md-block me-3" title="potato donkey"><img
+                src="https://www.ptdk.nl/assets/logo-white.svg" alt="potato donkey" style="height: 3em"></a>
     </div>
 </nav>
