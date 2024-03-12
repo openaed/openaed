@@ -3,49 +3,46 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="legend ui-element">
+    <div class="legend ui-element col-3">
         <h5>Legenda</h5>
-        <table>
-            <tr>
-                <td>
-                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-50 d-block d-md-none" alt="Regular icon">
-                    <img src="{{ asset('icons/aed_Regular.png') }}" class="w-75 d-none d-md-block" alt="Regular icon">
-                </td>
-                <td>
-                    Openbaar toegankelijk
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-50 d-block d-md-none" alt="Permissive icon">
-                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="w-75 d-none d-md-block" alt="Permissive icon">
-                </td>
-                <td>
-                    Beperkt toegankelijk
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-50 d-block d-md-none" alt="Private icon">
-                    <img src="{{ asset('icons/aed_Private.png') }}" class="w-75 d-none d-md-block" alt="Private icon">
-                </td>
-                <td>
-                    Geen toegang
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-50 d-block d-md-none" alt="Unknown icon">
-                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="w-75 d-none d-md-block" alt="Unknown icon">
-                </td>
-                <td>
-                    Toegang onbekend
-                </td>
-            </tr>
-        </table>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ asset('icons/aed_Regular.png') }}" class="img-fluid" alt="Regular icon">
+                </div>
+                <div class="col-9 my-auto">
+                    <span class="fs-5">Openbaar toegankelijk</span><br>
+                    <small>Deze AED's zijn door iedereen te gebruiken.</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="img-fluid" alt="Permissive icon">
+                </div>
+                <div class="col-9 my-auto">
+                    <span class="fs-5">Beperkt toegankelijk</span><br>
+                    <small>Deze AED's hangen in winkels of bedrijven die gesloten kunnen zijn.</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ asset('icons/aed_Private.png') }}" class="img-fluid" alt="Private icon">
+                </div>
+                <div class="col-9 my-auto">
+                    <span class="fs-5">Geen toegang</span><br>
+                    <small>Op deze AED's zit een fysiek slot.</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="img-fluid" alt="Unknown icon">
+                </div>
+                <div class="col-9 my-auto">
+                    <span class="fs-5">Onbekende toegang</span><br>
+                    <small>Van deze AED's weten we nog niet hoe het zit.</small>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="map"></div>
 
@@ -81,30 +78,30 @@
 
             const regularIcon = L.icon({
                 iconUrl: 'icons/aed_Regular.png',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-                popupAnchor: [0, -15]
+                iconSize: [40, 45],
+                iconAnchor: [20, 45],
+                popupAnchor: [0, -40]
             });
 
             const permissiveIcon = L.icon({
                 iconUrl: 'icons/aed_Permissive.png',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-                popupAnchor: [0, -15]
+                iconSize: [40, 45],
+                iconAnchor: [20, 45],
+                popupAnchor: [0, -40]
             });
 
             const privateIcon = L.icon({
                 iconUrl: 'icons/aed_Private.png',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-                popupAnchor: [0, -15]
+                iconSize: [40, 45],
+                iconAnchor: [20, 45],
+                popupAnchor: [0, -40]
             });
 
             const unknownIcon = L.icon({
                 iconUrl: 'icons/aed_Unknown.png',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-                popupAnchor: [0, -15]
+                iconSize: [40, 45],
+                iconAnchor: [20, 45],
+                popupAnchor: [0, -40]
             });
 
             const allAEDURL = "{{ route('api.aed.all') }}";

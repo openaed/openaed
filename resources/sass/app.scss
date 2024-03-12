@@ -81,6 +81,10 @@ html {
     z-index: 999;
 }
 
+.w-10 {
+    width: 10% !important;
+}
+
 // mobile
 @media (max-width: 768px) {
     .ui-element {
