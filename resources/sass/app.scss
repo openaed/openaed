@@ -99,6 +99,10 @@ html {
         height: calc(100vh - 6rem);
     }
 
+    #legend {
+        display: none; // hide legend on mobile
+    }
+
     #legend-content.visible {
         display: inherit;
     }
