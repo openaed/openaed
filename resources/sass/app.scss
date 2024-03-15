@@ -96,11 +96,7 @@ html {
 // mobile
 @media (max-width: 768px) {
     #map {
-        height: calc(100vh - 6rem);
-    }
-
-    .legend {
-        display: none; // hide legend on mobile
+        height: calc(100vh - 5rem);
     }
 
     #legend-content.visible {
@@ -122,6 +118,8 @@ html {
         left: auto;
         bottom: 0;
         margin: auto;
+
+        display: none;
 
         font-size: 0.9em;
 
