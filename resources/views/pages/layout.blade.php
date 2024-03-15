@@ -16,6 +16,8 @@
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:locale" content="nl_NL">
 
+    <meta name="google-adsense-account" content="{{ config('app.adsense_publisher_id') }}">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

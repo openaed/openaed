@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'adsense_publisher_id' => env('ADSENSE_PUBLISHER_ID'),
+
 ];
