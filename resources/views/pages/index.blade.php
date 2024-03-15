@@ -258,6 +258,7 @@
         }
 
         const toggleLegend = () => {
+            if (window.matchMedia('(min-width: 768px)').matches) return;
             if (legend.classList.contains('visible')) {
                 legend.classList.remove('visible');
                 legendIcon.classList.remove('bi-caret-down-fill');
