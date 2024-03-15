@@ -4,11 +4,12 @@
 
 @section('content')
     <div class="legend ui-element col-3">
-        <h5>Legenda</h5>
-        <div class="container-fluid">
+        <span class="fs-5" onclick="toggleLegend()">Legenda <i class="bi bi-caret-up-fill d-inline d-md-none"
+                id="legend-icon"></i></span>
+        <div class="container-fluid visible" id="legend-content">
             <div class="row">
                 <div class="col-3">
-                    <img src="{{ asset('icons/aed_Regular.png') }}" class="img-fluid" alt="Regular icon">
+                    <img src="{{ asset('icons/aed_Regular.png') }}" class="img-fluid legend-icon" alt="Regular icon">
                 </div>
                 <div class="col-9 my-auto">
                     <span class="fs-5">Openbaar toegankelijk</span><br>
@@ -17,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="img-fluid" alt="Permissive icon">
+                    <img src="{{ asset('icons/aed_Permissive.png') }}" class="img-fluid legend-icon" alt="Permissive icon">
                 </div>
                 <div class="col-9 my-auto">
                     <span class="fs-5">Beperkt toegankelijk</span><br>
@@ -26,7 +27,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    <img src="{{ asset('icons/aed_Private.png') }}" class="img-fluid" alt="Private icon">
+                    <img src="{{ asset('icons/aed_Private.png') }}" class="img-fluid legend-icon" alt="Private icon">
                 </div>
                 <div class="col-9 my-auto">
                     <span class="fs-5">Geen toegang</span><br>
@@ -35,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="col-3">
-                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="img-fluid" alt="Unknown icon">
+                    <img src="{{ asset('icons/aed_Unknown.png') }}" class="img-fluid legend-icon" alt="Unknown icon">
                 </div>
                 <div class="col-9 my-auto">
                     <span class="fs-5">Onbekende toegang</span><br>
@@ -53,6 +54,9 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
+
+            map.attributionControl.setPrefix(''); // Don't show the 'Leaflet' text in the bottom right corner
+            map.attributionControl.setPosition('topright');
 
             if (localStorage.getItem("lat")) {
                 map.setView([localStorage.getItem("lat"), localStorage.getItem("lon")], localStorage.getItem(
@@ -239,5 +243,34 @@
                 return returnstring;
             }
         });
+
+        const legend = document.getElementById("legend-content");
+        const legendIcon = document.getElementById("legend-icon");
+
+        if (localStorage.getItem("legend") == true) {
+            legend.classList.add('visible');
+            legendIcon.classList.remove('bi-caret-up-fill');
+            legendIcon.classList.add('bi-caret-down-fill');
+        } else {
+            legend.classList.remove('visible');
+            legendIcon.classList.add('bi-caret-up-fill');
+            legendIcon.classList.remove('bi-caret-down-fill');
+        }
+
+        const toggleLegend = () => {
+            if (legend.classList.contains('visible')) {
+                legend.classList.remove('visible');
+                legendIcon.classList.remove('bi-caret-down-fill');
+                legendIcon.classList.add('bi-caret-up-fill');
+
+                localStorage.setItem("legend", false);
+            } else {
+                legend.classList.add('visible');
+                legendIcon.classList.add('bi-caret-down-fill');
+                legendIcon.classList.remove('bi-caret-up-fill');
+
+                localStorage.setItem("legend", true);
+            }
+        }
     </script>
 @endsection

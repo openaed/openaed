@@ -67,7 +67,7 @@ html {
 
 .legend {
     right: 0;
-    top: 10%;
+    top: 12.5%;
 }
 
 .ui-element {
@@ -85,8 +85,29 @@ html {
     width: 10% !important;
 }
 
+.legend-icon {
+    transition: 0.2s;
+}
+
+.legend-icon.flipped {
+    transform: rotate(180deg);
+}
+
 // mobile
 @media (max-width: 768px) {
+    #map {
+        height: calc(100vh - 6rem);
+    }
+
+    #legend-content.visible {
+        display: inherit;
+    }
+
+    #legend-content {
+        display: none;
+        transition: 0.2s;
+    }
+
     .ui-element {
         width: 100%;
     }
@@ -98,6 +119,12 @@ html {
         bottom: 0;
         margin: auto;
 
+        font-size: 0.9em;
+
         border-radius: 1 1 0 0;
+    }
+
+    .legend-icon {
+        width: 3.5em;
     }
 }
