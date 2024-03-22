@@ -25,9 +25,9 @@ Route::get('/aed-info', function () {
     return view('pages.aedinfo');
 })->name('aedinfo');
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/about-us', function () {
+    return view('pages.about-us');
+})->name('about-us');
 
 Route::get('/statistics', function () {
 

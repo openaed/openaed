@@ -12,12 +12,11 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link @if (Route::is('aedinfo')) active @endif" href="{{ route('aedinfo') }}">Wat is
                     een AED?</a>
-                <a class="nav-link @if (Route::is('docs')) active @endif" href="{{ route('docs') }}">API
-                    documentatie</a>
+                <a class="nav-link @if (Route::is('docs')) active @endif" href="{{ route('docs') }}">API</a>
                 <a class="nav-link @if (Route::is('statistics')) active @endif"
                     href="{{ route('statistics') }}">Statistieken</a>
-                <a class="nav-link @if (Route::is('contact')) active @endif"
-                    href="{{ route('contact') }}">Contact</a>
+                <a class="nav-link @if (Route::is('contact')) active @endif" href="{{ route('about-us') }}">Over
+                    ons</a>
                 <a target="_blank" href="https://github.com/openaed" class="nav-link" title="GitHub"><i
                         class="bi bi-github"></i></a>
             </div>
