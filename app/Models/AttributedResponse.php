@@ -19,7 +19,7 @@ class AttributedResponse
                 'title' => 'OpenAED',
                 'contact' => [
                     'name' => 'OpenAED',
-                    'url' => route('contact'),
+                    'url' => route('about-us'),
                     'email' => 'api@openaed.nl'
                 ],
                 'license' => [
