@@ -187,4 +187,8 @@ return [
 
     'adsense_publisher_id' => env('ADSENSE_PUBLISHER_ID'),
 
+    'webhooks' => [
+        'sync' => env('DISCORD_WEBHOOK_SYNC'),
+    ]
+
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\Discord;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Models\Defibrillator;
@@ -70,6 +71,10 @@ class DefibrillatorController extends Controller
 
         $defibrillators = json_decode(file_get_contents($overpass), true);
 
+        $total = 0;
+
+        Discord::syncStarted();
+
         foreach ($defibrillators['elements'] as $defibrillator) {
             if (Defibrillator::where('osm_id', $defibrillator['id'])->exists()) {
                 $defibModel = Defibrillator::where('osm_id', $defibrillator['id'])->first();
@@ -91,19 +96,19 @@ class DefibrillatorController extends Controller
                 $context = stream_context_create($options);
 
                 $nominatim = json_decode(file_get_contents($baseNominatim . $defibrillator['id'] . "&format=json", false, $context), true)[0];
-                if (isset($nominatim['address']['city'])) {
+                if (isset ($nominatim['address']['city'])) {
                     $defibModel->city = $nominatim['address']['city'] ?? null;
-                } else if (isset($nominatim['address']['town'])) {
+                } else if (isset ($nominatim['address']['town'])) {
                     $defibModel->city = $nominatim['address']['town'] ?? null;
-                } else if (isset($nominatim['address']['village'])) {
+                } else if (isset ($nominatim['address']['village'])) {
                     $defibModel->city = $nominatim['address']['village'] ?? null;
                 } else {
                     $defibModel->city = null;
                 }
 
-                if (isset($nominatim['address']['state'])) {
+                if (isset ($nominatim['address']['state'])) {
                     $defibModel->province = $nominatim['address']['state'];
-                } else if (isset($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
+                } else if (isset ($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
                     $defibModel->province = $nominatim['address']['municipality'];
                 } else {
                     $defibModel->province = null;
@@ -114,21 +119,21 @@ class DefibrillatorController extends Controller
             $defibModel->latitude = $defibrillator['lat'];
             $defibModel->longitude = $defibrillator['lon'];
             $defibModel->access = $defibrillator['tags']['access'] ?? null;
-            if (isset($defibrillator['tags']['indoor'])) {
+            if (isset ($defibrillator['tags']['indoor'])) {
                 $defibModel->indoor = $defibrillator['tags']['indoor'] == "yes" ? 1 : 0;
             } else {
                 $defibModel->indoor = null;
             }
             $defibModel->operator = $defibrillator['tags']['operator'] ?? null;
             $defibModel->operator_website = $defibrillator['tags']['operator:website'] ?? null;
-            if (isset($defibrillator['tags']['phone:NL'])) {
+            if (isset ($defibrillator['tags']['phone:NL'])) {
                 $defibModel->phone = $defibrillator['tags']['phone:NL'];
-            } else if (isset($defibrillator['tags']['operator:phone'])) {
+            } else if (isset ($defibrillator['tags']['operator:phone'])) {
                 $defibModel->phone = $defibrillator['tags']['operator:phone'];
             } else {
                 $defibModel->phone = $defibrillator['tags']['phone'] ?? null;
             }
-            if (isset($defibrillator['tags']['defibrillator:location:nl'])) {
+            if (isset ($defibrillator['tags']['defibrillator:location:nl'])) {
                 $defibModel->location = $defibrillator['tags']['defibrillator:location:nl'];
             } else {
                 $defibModel->location = $defibrillator['tags']['defibrillator:location'] ?? null;
@@ -146,6 +151,10 @@ class DefibrillatorController extends Controller
             if ($defibModel->city != null) {
                 sleep(1);
             }
+
+            $total++;
         }
+
+        Discord::syncFinished($total);
     }
 }
