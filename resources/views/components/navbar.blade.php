@@ -17,6 +17,7 @@
                     href="{{ route('statistics') }}">Statistieken</a>
                 <a class="nav-link @if (Route::is('contact')) active @endif" href="{{ route('about-us') }}">Over
                     ons</a>
+                <a target="_blank" href="https://patreon.com/OpenAED" class="nav-link" title="Patreon">Patreon</a>
                 <a target="_blank" href="https://github.com/openaed" class="nav-link" title="GitHub"><i
                         class="bi bi-github"></i></a>
             </div>
