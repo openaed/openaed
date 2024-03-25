@@ -1,0 +1,105 @@
+{
+    "data_format": 1,
+    "data_url": "https://raw.githubusercontent.com/openaed/openaed/main/taginfo.json",
+    "project": {
+        "name": "OpenAED",
+        "description": "Map of AEDs in the Netherlands",
+        "project_url": "https://openaed.nl",
+        "doc_url": "https://github.com/openaed/openaed/",
+        "icon_url": "https://github.com/openaed/openaed/blob/0dce6e088f8af595682ae8ae69ade91898b1e684/public/images/logos/openaed.png",
+        "contact_name": "Jasper Platenburg",
+        "contact_email": "jasper@openaed.nl"
+    },
+    "tags": [
+        {
+            "key": "emergency",
+            "value": "defibrillator",
+            "object_types": ["node"]
+        },
+        {
+            "key": "access",
+            "value": "yes",
+            "object_types": ["node"]
+        },
+        {
+            "key": "access",
+            "value": "no",
+            "object_types": ["node"]
+        },
+        {
+            "key": "access",
+            "value": "permissive",
+            "object_types": ["node"]
+        },
+        {
+            "key": "indoor",
+            "value": "yes",
+            "object_types": ["node"]
+        },
+        {
+            "key": "indoor",
+            "value": "no",
+            "object_types": ["node"]
+        },
+        {
+            "key": "operator",
+            "object_types": ["node"]
+        },
+        {
+            "key": "operator:phone",
+            "object_types": ["node"]
+        },
+        {
+            "key": "operator:website",
+            "object_types": ["node"]
+        },
+        {
+            "key": "phone",
+            "object_types": ["node"]
+        },
+        {
+            "key": "phone:NL",
+            "object_types": ["node"]
+        },
+        {
+            "key": "defibrillator:location",
+            "object_types": ["node"]
+        },
+        {
+            "key": "defibrillator:location:nl",
+            "object_types": ["node"]
+        },
+        {
+            "key": "level",
+            "object_types": ["node"]
+        },
+        {
+            "key": "image",
+            "object_types": ["node"]
+        },
+        {
+            "key": "manufacturer",
+            "object_types": ["node"]
+        },
+        {
+            "key": "model",
+            "object_types": ["node"]
+        },
+        {
+            "key": "defibrillator:cabinet",
+            "object_types": ["node"]
+        },
+        {
+            "key": "defibrillator:cabinet:manufacturer",
+            "object_types": ["node"]
+        },
+        {
+            "key": "opening_hours",
+            "object_types": ["node"]
+        },
+        {
+            "key": "note",
+            "object_types": ["node"]
+        }
+    ]
+}
