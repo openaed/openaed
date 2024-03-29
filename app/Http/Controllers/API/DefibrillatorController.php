@@ -69,12 +69,19 @@ class DefibrillatorController extends Controller
         // Get max updated_at from Defibrillator
         $lastUpdate = Carbon::parse(Defibrillator::max('updated_at'));
 
-        $year = $lastUpdate->year;
-        $month = $lastUpdate->format('m');
-        $day = $lastUpdate->format('d');
+        if ($lastUpdate) {
+            $year = $lastUpdate->year;
+            $month = $lastUpdate->format('m');
+            $day = $lastUpdate->format('d');
 
-        $hour = $lastUpdate->format('H');
-        $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anode%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29%28newer%3A%22{$year}-{$month}-{$day}T{$hour}%3A00%3A00Z%22%29%3B%0Aout%20geom%3B%0A";
+            $hour = $lastUpdate->format('H');
+
+            $time = "%28newer%3A%22{$year}-{$month}-{$day}T{$hour}%3A00%3A00Z%22%29";
+        } else { // Fresh database - no last update yet
+            $time = "";
+        }
+
+        $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anode%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29{$time}%3B%0Aout%20geom%3B%0A";
 
         $baseNominatim = "https://nominatim.openstreetmap.org/lookup?osm_ids=N";
 
