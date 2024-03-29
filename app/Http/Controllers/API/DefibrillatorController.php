@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Carbon\Carbon;
 use App\Helpers\Discord;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -61,17 +62,25 @@ class DefibrillatorController extends Controller
     /**
      * Import defibrillators from OpenStreetMap
      *
-     * @return void
+     * @return int The amount of defibrillators imported
      */
-    public static function import()
+    public static function import(): int
     {
-        $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anwr%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29%3B%0Aout%20geom%3B";
+        // Get max updated_at from Defibrillator
+        $lastUpdate = Carbon::parse(Defibrillator::max('updated_at'));
+
+        $year = $lastUpdate->year;
+        $month = $lastUpdate->format('m');
+        $day = $lastUpdate->format('d');
+
+        $hour = $lastUpdate->format('H');
+        $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anode%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29%28newer%3A%22{$year}-{$month}-{$day}T{$hour}%3A00%3A00Z%22%29%3B%0Aout%20geom%3B%0A";
 
         $baseNominatim = "https://nominatim.openstreetmap.org/lookup?osm_ids=N";
 
         $defibrillators = json_decode(file_get_contents($overpass), true);
 
-        $total = 0;
+        $new = 0;
 
         Discord::syncStarted();
 
@@ -96,19 +105,19 @@ class DefibrillatorController extends Controller
                 $context = stream_context_create($options);
 
                 $nominatim = json_decode(file_get_contents($baseNominatim . $defibrillator['id'] . "&format=json", false, $context), true)[0];
-                if (isset ($nominatim['address']['city'])) {
+                if (isset($nominatim['address']['city'])) {
                     $defibModel->city = $nominatim['address']['city'] ?? null;
-                } else if (isset ($nominatim['address']['town'])) {
+                } else if (isset($nominatim['address']['town'])) {
                     $defibModel->city = $nominatim['address']['town'] ?? null;
-                } else if (isset ($nominatim['address']['village'])) {
+                } else if (isset($nominatim['address']['village'])) {
                     $defibModel->city = $nominatim['address']['village'] ?? null;
                 } else {
                     $defibModel->city = null;
                 }
 
-                if (isset ($nominatim['address']['state'])) {
+                if (isset($nominatim['address']['state'])) {
                     $defibModel->province = $nominatim['address']['state'];
-                } else if (isset ($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
+                } else if (isset($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
                     $defibModel->province = $nominatim['address']['municipality'];
                 } else {
                     $defibModel->province = null;
@@ -119,21 +128,21 @@ class DefibrillatorController extends Controller
             $defibModel->latitude = $defibrillator['lat'];
             $defibModel->longitude = $defibrillator['lon'];
             $defibModel->access = $defibrillator['tags']['access'] ?? null;
-            if (isset ($defibrillator['tags']['indoor'])) {
+            if (isset($defibrillator['tags']['indoor'])) {
                 $defibModel->indoor = $defibrillator['tags']['indoor'] == "yes" ? 1 : 0;
             } else {
                 $defibModel->indoor = null;
             }
             $defibModel->operator = $defibrillator['tags']['operator'] ?? null;
             $defibModel->operator_website = $defibrillator['tags']['operator:website'] ?? null;
-            if (isset ($defibrillator['tags']['phone:NL'])) {
+            if (isset($defibrillator['tags']['phone:NL'])) {
                 $defibModel->phone = $defibrillator['tags']['phone:NL'];
-            } else if (isset ($defibrillator['tags']['operator:phone'])) {
+            } else if (isset($defibrillator['tags']['operator:phone'])) {
                 $defibModel->phone = $defibrillator['tags']['operator:phone'];
             } else {
                 $defibModel->phone = $defibrillator['tags']['phone'] ?? null;
             }
-            if (isset ($defibrillator['tags']['defibrillator:location:nl'])) {
+            if (isset($defibrillator['tags']['defibrillator:location:nl'])) {
                 $defibModel->location = $defibrillator['tags']['defibrillator:location:nl'];
             } else {
                 $defibModel->location = $defibrillator['tags']['defibrillator:location'] ?? null;
@@ -152,9 +161,10 @@ class DefibrillatorController extends Controller
                 sleep(1);
             }
 
-            $total++;
+            $new++;
         }
 
-        Discord::syncFinished($total);
+        Discord::syncFinished(Defibrillator::count());
+        return $new;
     }
 }

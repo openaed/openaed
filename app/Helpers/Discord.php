@@ -11,17 +11,17 @@ class Discord
         $url = config('app.webhooks.sync');
         $username = config('app.name');
 
-        $lastAdded = \App\Models\Defibrillator::orderBy('id', 'desc')->limit(3)->get();
-        $lastAdded = $lastAdded->map(function ($item) {
+        $lastModified = \App\Models\Defibrillator::orderBy('updated_at', 'desc')->limit(3)->get();
+        $lastModified = $lastModified->map(function ($item) {
             return "[{$item->city}, {$item->province}](https://openstreetmap.org/node/{$item->osm_id})";
         })->implode("\n");
 
-        $lastAdded = "**Laatst toegevoegde AEDs**\n$lastAdded";
+        $lastModified = "**Laatst aangepaste AEDs**\n$lastModified";
 
         $data = [
             'username' => $username,
             'embeds' => [
-                Discord::createEmbed('AED synchronisatie afgerond', "Totaal $totalSynced AEDs\n\n" . $lastAdded),
+                Discord::createEmbed('AED synchronisatie afgerond', "Totaal $totalSynced AEDs\n\n" . $lastModified),
             ],
         ];
 
