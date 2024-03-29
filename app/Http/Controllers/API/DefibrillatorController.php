@@ -74,9 +74,7 @@ class DefibrillatorController extends Controller
             $month = $lastUpdate->format('m');
             $day = $lastUpdate->format('d');
 
-            $hour = $lastUpdate->format('H');
-
-            $time = "%28newer%3A%22{$year}-{$month}-{$day}T{$hour}%3A00%3A00Z%22%29";
+            $time = "%28newer%3A%22{$year}-{$month}-{$day}T00%3A00%3A00Z%22%29";
         } else { // Fresh database - no last update yet
             $time = "";
         }
