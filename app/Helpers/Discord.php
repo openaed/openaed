@@ -4,6 +4,24 @@ namespace App\Helpers;
 
 class Discord
 {
+
+    public static function cleanedUp($amount)
+    {
+        if (!config('app.webhooks.sync'))
+            return true;
+        $url = config('app.webhooks.sync');
+        $username = config('app.name');
+
+        $data = [
+            'username' => $username,
+            'embeds' => [
+                Discord::createEmbed('AED opruiming', "Opruiming afgerond, $amount AEDs verwijderd"),
+            ],
+        ];
+
+        return Discord::sendWebhook($url, $data);
+    }
+
     public static function syncFinished($totalSynced)
     {
         if (!config('app.webhooks.sync'))
@@ -28,7 +46,7 @@ class Discord
         return Discord::sendWebhook($url, $data);
     }
 
-    public static function syncStarted()
+    public static function syncStarted($all = false)
     {
         if (!config('app.webhooks.sync'))
             return true;
@@ -38,7 +56,7 @@ class Discord
         $data = [
             'username' => $username,
             'embeds' => [
-                Discord::createEmbed('AED synchronisatie', 'Synchronisatie gestart'),
+                Discord::createEmbed('AED synchronisatie', 'Synchronisatie gestart' . ($all ? ' (alle AEDs)' : '')),
             ],
         ];
 

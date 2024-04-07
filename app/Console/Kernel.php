@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
         // Remember: time is in UTC
         $schedule->call('App\Http\Controllers\API\DefibrillatorController@import')->dailyAt('05:00');
         $schedule->call('App\Http\Controllers\API\DefibrillatorController@import')->dailyAt('17:00');
+
+        $schedule->call('App\Http\Controllers\API\DefibrillatorController@cleanup')->mondays()->name('aed.cleanup');
     }
 
     /**

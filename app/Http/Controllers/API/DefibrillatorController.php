@@ -60,16 +60,45 @@ class DefibrillatorController extends Controller
     }
 
     /**
+     * Cleanup the defibrillator database
+     *
+     * This function will remove all defibrillators from the database that have been removed from OpenStreetMap.
+     * This function is called by a scheduled task.
+     *
+     * @return void
+     */
+    public static function cleanup(): void
+    {
+        $now = Carbon::now();
+
+        DefibrillatorController::import(true, function ($new) use ($now) {
+            // We've imported ALL AEDs now - their updated_at values have changed.
+            // Any AED whose updated_at value is not at or after $now has been removed from OSM.
+            // We can now safely delete these AEDs from our database.
+            // This uses soft deletes, so the data is not lost.
+
+            $toDelete = Defibrillator::where('updated_at', '<', $now)->get();
+
+            foreach ($toDelete as $defibrillator) {
+                $defibrillator->delete();
+            }
+
+            Discord::cleanedUp($toDelete->count()); // Notify Discord
+        });
+    }
+
+    /**
      * Import defibrillators from OpenStreetMap
      *
+     * @param bool $all Whether to import all defibrillators
      * @return int The amount of defibrillators imported
      */
-    public static function import(): int
+    public static function import($all = false, $callback = null): int
     {
         // Get max updated_at from Defibrillator
         $lastUpdate = Carbon::parse(Defibrillator::max('updated_at'));
 
-        if ($lastUpdate) {
+        if ($lastUpdate && !$all) { // if $all is true, get all defibrillators
             $year = $lastUpdate->year;
             $month = $lastUpdate->format('m');
             $day = $lastUpdate->format('d');
@@ -87,7 +116,7 @@ class DefibrillatorController extends Controller
 
         $new = 0;
 
-        Discord::syncStarted();
+        Discord::syncStarted($all);
 
         foreach ($defibrillators['elements'] as $defibrillator) {
             if (Defibrillator::where('osm_id', $defibrillator['id'])->exists()) {
@@ -116,6 +145,8 @@ class DefibrillatorController extends Controller
                     $defibModel->city = $nominatim['address']['town'] ?? null;
                 } else if (isset($nominatim['address']['village'])) {
                     $defibModel->city = $nominatim['address']['village'] ?? null;
+                } else if (isset($nominatim['address']['municipality'])) { // Some AEDs are not in a place
+                    $defibModel->city = $nominatim['address']['municipality'] ?? null;
                 } else {
                     $defibModel->city = null;
                 }
@@ -170,6 +201,9 @@ class DefibrillatorController extends Controller
         }
 
         Discord::syncFinished(Defibrillator::count());
+        if ($callback)
+            $callback($new);
+
         return $new;
     }
 }
