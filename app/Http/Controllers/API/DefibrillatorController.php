@@ -73,12 +73,12 @@ class DefibrillatorController extends Controller
         $now = Carbon::now();
 
         DefibrillatorController::import(true, function ($new) use ($now) {
-            // We've imported ALL AEDs now - their updated_at values have changed.
-            // Any AED whose updated_at value is not at or after $now has been removed from OSM.
+            // We've imported ALL AEDs now - their synced_at values have changed.
+            // Any AED whose synced_at value is not at or after $now has been removed from OSM.
             // We can now safely delete these AEDs from our database.
             // This uses soft deletes, so the data is not lost.
 
-            $toDelete = Defibrillator::where('updated_at', '<', $now)->get();
+            $toDelete = Defibrillator::where('synced_at', '<', $now)->get();
 
             foreach ($toDelete as $defibrillator) {
                 $defibrillator->delete();
@@ -202,6 +202,7 @@ class DefibrillatorController extends Controller
                 $defibModel->cabinet = $defibrillator['tags']['defibrillator:cabinet'] ?? null;
                 $defibModel->cabinet_manufacturer = $defibrillator['tags']['defibrillator:cabinet:manufacturer'] ?? null;
                 $defibModel->description = $defibrillator['tags']['description'] ?? null;
+                $defibModel->synced_at = Carbon::now();
                 $defibModel->save();
 
                 if ($defibModel->city != null) {
