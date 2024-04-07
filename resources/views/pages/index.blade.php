@@ -211,8 +211,8 @@
                         popupContent +=
                             `<br><a target='_blank' href='${directurl}'><img class="popupimage" src='${directurl}'></a>`; // Image
                     }
-                    if (aed.note) popupContent +=
-                        `<br><b>Opmerking:</b> ${aed.note}`; // Note
+                    if (aed.description) popupContent +=
+                        `<br><b>Opmerking:</b> ${aed.description}`; // Description
                     popupContent +=
                         `<br><a target='_blank' href='https://www.openstreetmap.org/node/${aed.osm_id}'>Bewerken op OpenStreetMap</a>`; // OSM link
 

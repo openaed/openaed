@@ -32,6 +32,6 @@ class Defibrillator extends Model
         'image',
         'cabinet',
         'cabinet_manufacturer',
-        'note'
+        'description'
     ];
 }

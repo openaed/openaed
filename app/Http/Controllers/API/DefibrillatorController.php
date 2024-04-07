@@ -159,7 +159,7 @@ class DefibrillatorController extends Controller
             $defibModel->image = $defibrillator['tags']['image'] ?? null;
             $defibModel->cabinet = $defibrillator['tags']['defibrillator:cabinet'] ?? null;
             $defibModel->cabinet_manufacturer = $defibrillator['tags']['defibrillator:cabinet:manufacturer'] ?? null;
-            $defibModel->note = $defibrillator['tags']['note'] ?? null;
+            $defibModel->description = $defibrillator['tags']['description'] ?? null;
             $defibModel->save();
 
             if ($defibModel->city != null) {

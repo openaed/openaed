@@ -98,7 +98,7 @@
             "object_types": ["node"]
         },
         {
-            "key": "note",
+            "key": "description",
             "object_types": ["node"]
         }
     ]
