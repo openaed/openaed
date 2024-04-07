@@ -189,6 +189,7 @@ return [
 
     'webhooks' => [
         'sync' => env('DISCORD_WEBHOOK_SYNC'),
+        'error' => env('DISCORD_WEBHOOK_ERROR'),
     ]
 
 ];

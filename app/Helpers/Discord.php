@@ -5,6 +5,23 @@ namespace App\Helpers;
 class Discord
 {
 
+    public static function error($error)
+    {
+        if (!config('app.webhooks.error'))
+            return true;
+        $url = config('app.webhooks.error');
+        $username = config('app.name');
+
+        $data = [
+            'username' => $username,
+            'embeds' => [
+                Discord::createEmbed('Fout!', "```" . $error . "```"),
+            ],
+        ];
+
+        return Discord::sendWebhook($url, $data);
+    }
+
     public static function cleanedUp($amount)
     {
         if (!config('app.webhooks.sync'))
