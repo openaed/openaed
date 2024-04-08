@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
         $schedule->call('App\Http\Controllers\API\DefibrillatorController@import')->dailyAt('05:00');
         $schedule->call('App\Http\Controllers\API\DefibrillatorController@import')->dailyAt('17:00');
 
-        $schedule->call('App\Http\Controllers\API\DefibrillatorController@cleanup')->mondays()->name('aed.cleanup');
+        $schedule->call('App\Http\Controllers\API\DefibrillatorController@cleanup')->mondays()->at('01:00')->name('aed.cleanup');
     }
 
     /**
