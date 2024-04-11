@@ -1,9 +1,9 @@
 @extends('pages.layout')
 
-@section('title', 'API documentatie')
+@section('title', __('pages.api'))
 
 @section('content')
-    <h1 class="mt-5">API documentatie</h1>
+    <h1 class="mt-5">{{ __('pages.api') }}</h1>
 
     <p>
         De OpenAED API is beschikbaar gemaakt onder de <a target="_blank"

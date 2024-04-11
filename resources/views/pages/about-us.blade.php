@@ -1,9 +1,9 @@
 @extends('pages.layout')
 
-@section('title', 'Over ons')
+@section('title', __('pages.about_us'))
 
 @section('content')
-    <h1 class="mt-5">Over ons</h1>
+    <h1 class="mt-5">{{ __('pages.about_us') }}</h1>
     <section id="about-us">
         <div class="col-12 col-md-8">
             <p>

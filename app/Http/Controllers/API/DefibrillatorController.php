@@ -61,6 +61,28 @@ class DefibrillatorController extends Controller
     }
 
     /**
+     * Get one defibrillator by ID
+     *
+     * @return JsonResponse
+     */
+    public function getById(Request $request, $id): JsonResponse
+    {
+        $defibrillator = Defibrillator::find($id);
+        return response()->json(AttributedResponse::new($defibrillator));
+    }
+
+    /**
+     * Get basic defibrillator information
+     *
+     * @return JsonResponse
+     */
+    public function basic(Request $request): JsonResponse
+    {
+        $defibrillators = Defibrillator::select('id', 'latitude', 'longitude', 'access')->get()->toArray();
+        return response()->json(AttributedResponse::new($defibrillators));
+    }
+
+    /**
      * Cleanup the defibrillator database
      *
      * This function will remove all defibrillators from the database that have been removed from OpenStreetMap.

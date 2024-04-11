@@ -1,21 +1,23 @@
 @extends('pages.layout')
 
-@section('title', 'Statistieken')
+@section('title', __('pages.statistics'))
 
 @section('content')
-    <h1 class="mt-5">Statistieken</h1>
+    <h1 class="mt-5">{{ __('pages.statistics') }}</h1>
 
     <div class="col-12 mb-3">
-        <span>Op dit moment staan er <span class="text-primary fw-bold">{{ $totalAEDs }}</span> AED's in de
-            database in <span class="text-primary fw-bold">{{ $distinctCities }}</span> verschillende woonplaatsen.</span>
+        {!! __('statistics.current', [
+            'amount' => '<span class="text-primary fw-bold">' . $totalAEDs . '</span>',
+            'cities' => '<span class="text-primary fw-bold">' . $distinctCities . '</span>',
+        ]) !!}
 
         <div class="row">
             <div class="col-12 col-md-4">
-                <h3 class="mt-4">Per provincie</h3>
+                <h3 class="mt-4">{{ __('statistics.per_province') }}</h3>
                 <table class="table table-striped table-fixed">
                     <thead>
                         <tr>
-                            <th class="col-8">Provincie</th>
+                            <th class="col-8">{{ __('statistics.province') }}</th>
                             <th class="col-4">AED's</th>
                         </tr>
                     </thead>
@@ -30,11 +32,11 @@
                 </table>
             </div>
             <div class="col-12 col-md-4">
-                <h3 class="mt-4">Per woonplaats</h3>
+                <h3 class="mt-4">{{ __('statistics.per_city') }}</h3>
                 <table class="table table-striped table-fixed">
                     <thead>
                         <tr>
-                            <th class="col-8">Stad</th>
+                            <th class="col-8">{{ __('statistics.city') }}</th>
                             <th class="col-4">AED's</th>
                         </tr>
                     </thead>
@@ -49,11 +51,11 @@
                 </table>
             </div>
             <div class="col-12 col-md-4">
-                <h3 class="mt-4">Per beheerder</h3>
+                <h3 class="mt-4">{{ __('statistics.per_operator') }}</h3>
                 <table class="table table-striped table-fixed">
                     <thead>
                         <tr>
-                            <th class="col-8">Beheerder</th>
+                            <th class="col-8">{{ __('statistics.operator') }}</th>
                             <th class="col-4">AED's</th>
                         </tr>
                     </thead>

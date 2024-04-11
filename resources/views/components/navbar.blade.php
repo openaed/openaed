@@ -10,13 +10,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link @if (Route::is('aedinfo')) active @endif" href="{{ route('aedinfo') }}">Wat is
-                    een AED?</a>
-                <a class="nav-link @if (Route::is('docs')) active @endif" href="{{ route('docs') }}">API</a>
+                <a class="nav-link @if (Route::is('aedinfo')) active @endif"
+                    href="{{ route('aedinfo') }}">{{ __('pages.what_is_aed') }}</a>
+                <a class="nav-link @if (Route::is('docs')) active @endif"
+                    href="{{ route('docs') }}">{{ __('pages.api') }}</a>
                 <a class="nav-link @if (Route::is('statistics')) active @endif"
-                    href="{{ route('statistics') }}">Statistieken</a>
-                <a class="nav-link @if (Route::is('contact')) active @endif" href="{{ route('about-us') }}">Over
-                    ons</a>
+                    href="{{ route('statistics') }}">{{ __('pages.statistics') }}</a>
+                <a class="nav-link @if (Route::is('contact')) active @endif"
+                    href="{{ route('about-us') }}">{{ __('pages.about_us') }}</a>
                 <a target="_blank" href="https://patreon.com/OpenAED" class="nav-link" title="Patreon">Patreon</a>
                 <a target="_blank" href="https://github.com/openaed" class="nav-link" title="GitHub"><i
                         class="bi bi-github"></i></a>
