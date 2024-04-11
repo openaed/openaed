@@ -38,7 +38,10 @@ class EnsureAPIKey
             return response()->json(["message" => "Blocked"], 401);
         }
 
-        if ($apiKey === null && !in_array($referer, ["dev.openaed.nl", "openaed.nl", "openaed.test"])) {
+        $whitelistedIPs = config('app.whitelisted_ips');
+        $whitelistedIPs = explode(';', $whitelistedIPs);
+
+        if ($apiKey === null && !in_array($request->ip(), $whitelistedIPs)) {
             return response()->json(["message" => "No API key provided"], 401);
         }
 
