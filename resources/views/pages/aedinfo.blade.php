@@ -49,20 +49,9 @@
 
     <h3>Meer informatie?</h3>
     <div class="row mb-4">
-        <div class="col-5 text-start">
-            <a href="https://www.hartstichting.nl/reanimatie/wat-is-een-aed/" target="_blank">
-                <img src="{{ asset('images/logos/hartstichting.png') }}" class="img-fluid" style="max-height: 8em;"
-                    alt="Hartstichting">
-            </a>
-        </div>
-        <div class="col-2 text-center">
-            <a href="https://hartslagnu.nl/" target="_blank">
-                <img src="{{ asset('images/logos/hartslagnu.jpg') }}" class="img-fluid" style="max-height: 8em;"
-                    alt="HartslagNu">
-            </a>
-        </div>
-        <div class="col-5 text-end">
-            <a href="https://www.rodekruis.nl/ehbo/ehbo-tips/reanimatie/" target="_blank">
+        <div class="col text-start">
+            <a href="https://www.rodekruis.be/wat-kan-jij-doen/volg-een-opleiding/eerstehulptips/reanimeren/"
+                target="_blank">
                 <img src="{{ asset('images/logos/rodekruis.png') }}" class="img-fluid" style="max-height: 8em;"
                     alt="Rode Kruis">
             </a>
