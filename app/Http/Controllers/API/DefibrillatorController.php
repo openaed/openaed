@@ -111,6 +111,7 @@ class DefibrillatorController extends Controller
             $time = "%28newer%3A%22{$year}-{$month}-{$day}T00%3A00%3A00Z%22%29";
         } else { // Fresh database - no last update yet
             $time = "";
+            $all = true;
         }
 
         Discord::syncStarted($all);
