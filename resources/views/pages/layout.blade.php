@@ -12,7 +12,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/logos/openaed.png') }}">
     <meta property="og:description"
-        content="OpenAED is een open-source project dat als doel heeft om alle AED's in Nederland in kaart te brengen.">
+        content="OpenAED is een open-source project dat als doel heeft om alle AED's in België in kaart te brengen.">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:locale" content="nl_NL">
 
