@@ -4,16 +4,16 @@
 
 @section('content')
     <div class="legend ui-element col-3">
-        <span class="fs-5" onclick="toggleLegend()">Legenda <i class="bi bi-caret-up-fill d-inline d-md-none"
-                id="legend-icon"></i></span>
+        <span class="fs-5" onclick="toggleLegend()">{{ __('legend.legend') }} <i
+                class="bi bi-caret-up-fill d-inline d-md-none" id="legend-icon"></i></span>
         <div class="container-fluid visible" id="legend-content">
             <div class="row">
                 <div class="col-3">
                     <img src="{{ asset('icons/aed_Regular.png') }}" class="img-fluid legend-icon" alt="Regular icon">
                 </div>
                 <div class="col-9 my-auto">
-                    <span class="fs-5">Openbaar toegankelijk</span><br>
-                    <small>Deze AED's zijn door iedereen te gebruiken.</small>
+                    <span class="fs-5">{{ __('legend.public') }}</span><br>
+                    <small>{{ __('legend.public.description') }}</small>
                 </div>
             </div>
             <div class="row">
@@ -21,8 +21,8 @@
                     <img src="{{ asset('icons/aed_Permissive.png') }}" class="img-fluid legend-icon" alt="Permissive icon">
                 </div>
                 <div class="col-9 my-auto">
-                    <span class="fs-5">Beperkt toegankelijk</span><br>
-                    <small>Deze AED's hangen in winkels of bedrijven die gesloten kunnen zijn.</small>
+                    <span class="fs-5">{{ __('legend.permissive') }}</span><br>
+                    <small>{{ __('legend.permissive.description') }}</small>
                 </div>
             </div>
             <div class="row">
@@ -30,8 +30,8 @@
                     <img src="{{ asset('icons/aed_Private.png') }}" class="img-fluid legend-icon" alt="Private icon">
                 </div>
                 <div class="col-9 my-auto">
-                    <span class="fs-5">Geen toegang</span><br>
-                    <small>Op deze AED's zit een fysiek slot.</small>
+                    <span class="fs-5">{{ __('legend.private') }}</span><br>
+                    <small>{{ __('legend.private.description') }}</small>
                 </div>
             </div>
             <div class="row">
@@ -39,8 +39,8 @@
                     <img src="{{ asset('icons/aed_Unknown.png') }}" class="img-fluid legend-icon" alt="Unknown icon">
                 </div>
                 <div class="col-9 my-auto">
-                    <span class="fs-5">Onbekende toegang</span><br>
-                    <small>Van deze AED's weten we nog niet hoe het zit.</small>
+                    <span class="fs-5">{{ __('legend.unknown') }}</span><br>
+                    <small>{{ __('legend.unknown.description') }}</small>
                 </div>
             </div>
         </div>
@@ -128,80 +128,81 @@
 
                     if (aed.access == "permissive") {
                         icon = permissiveIcon;
-                        access = "Beperkt"
+                        access = "{{ __('defibrillator.access.permissive') }}"
                     } else if (aed.access == "unknown" || aed.access == null) {
                         icon = unknownIcon;
-                        access = "Onbekend"
+                        access = "{{ __('defibrillator.access.unknown') }}"
                     } else if (aed.access == "private" || aed.access == "no") {
                         icon = privateIcon;
-                        access = "Geen"
+                        access = "{{ __('defibrillator.access.private') }}"
                     } else {
                         icon = regularIcon;
-                        access = "Openbaar"
+                        access = "{{ __('defibrillator.access.public') }}"
                     }
 
                     if (aed.indoor == true) {
-                        indoor = "Ja";
+                        indoor = "{{ __('Yes') }}";
                         if (aed.level != 0 && aed.level != null) {
-                            level = ", op verdieping " + aed.level;
+                            level = ("{{ __('defibrillator.indoor.on_floor', ['floor' => '-level-']) }}")
+                                .replace('-level-', aed.level);
                         } else if (aed.level == null) {
                             level = "";
                         } else {
-                            level = ", op de begane grond";
+                            level = "{{ __('defibrillator.indoor.on_ground_floor') }}";
                         }
                     } else {
-                        indoor = "Nee";
+                        indoor = "{{ __('No') }}";
                     }
 
                     if (aed.locked == "yes") {
-                        locked = "Ja";
+                        locked = "{{ __('Yes') }}";
                     } else {
-                        locked = "Nee";
+                        locked = "{{ __('No') }}";
                     }
 
                     switch (aed.cabinet) {
                         case "horizontal_door":
-                            cabinet = "Horizontale deur";
+                            cabinet = "{{ __('defibrillator.cabinet.horizontal_door') }}";
                             break;
                         case "vertical_door":
-                            cabinet = "Verticale deur";
+                            cabinet = "{{ __('defibrillator.cabinet.vertical_door') }}";
                             break;
                         case "no":
-                            cabinet = "Geen";
+                            cabinet = "{{ __('defibrillator.cabinet.no') }}";
                             break;
                         case "twist":
-                            cabinet = "Draaiend";
+                            cabinet = "{{ __('defibrillator.cabinet.twist') }}";
                             break;
                         case "mechanical":
-                            cabinet = "Mechanisch";
+                            cabinet = "{{ __('defibrillator.cabinet.mechanical') }}";
                             break;
                         default:
-                            cabinet = "Onbekend";
+                            cabinet = "{{ __('defibrillator.cabinet.unknown') }}";
                             break;
                     }
 
                     let popupContent = ''; // Initialise popup content
                     popupContent +=
-                        `<h3>${aed.operator ?? "Onbekende beheerder"}</h3>`; // Operator name
+                        `<h3>${aed.operator ?? "{{ __('defibrillator.operator.unknown') }}"}</h3>`; // Operator name
                     if (aed.operator_website) popupContent +=
                         `<small><a target='_blank' href='${aed.operator_website}'>${aed.operator_website}</a></small><br>`; // Operator website
-                    popupContent += `<b>Toegang:</b> ${access}`; // Access
+                    popupContent += `<b>{{ __('defibrillator.access') }}:</b> ${access}`; // Access
                     if (aed.locked) popupContent +=
-                        `<br><b>Slot:</b> ${aed.locked ? "Ja" : "Nee"}`; // Lock
+                        `<br><b>{{ __('defibrillator.locked') }}:</b> ${aed.locked ? "{{ __('Yes') }}" : "{{ __('No') }}"}`; // Lock
                     if (aed.phone) popupContent +=
-                        `<br><b>Telefoon:</b> ${aed.phone}`; // Operator phone number
+                        `<br><b>{{ __('defibrillator.phone') }}:</b> ${aed.phone}`; // Operator phone number
                     if (aed.location) popupContent +=
-                        `<br><b>Exacte locatie:</b> ${aed.location}`; // Exact location
+                        `<br><b>{{ __('defibrillator.location') }}:</b> ${aed.location}`; // Exact location
                     popupContent +=
-                        `<br><b>Binnen:</b> ${indoor}${level}`; // Whether the AED is indoors
+                        `<br><b>{{ __('defibrillator.indoor') }}:</b> ${indoor}${level}`; // Whether the AED is indoors
                     if (aed["opening_hours"]) popupContent +=
-                        `<br><b>Openingstijden:</b>${parseOpeningHours(aed.opening_hours)}`; // Opening hours
+                        `<br><b>{{ __('defibrillator.opening_hours') }}:</b>${parseOpeningHours(aed.opening_hours)}`; // Opening hours
                     if (aed.manufacturer) popupContent +=
-                        `<br><b>Type:</b> ${aed.manufacturer} ${aed.model ?? ""}`; // Manufacturer
+                        `<br><b>{{ __('defibrillator.type') }}:</b> ${aed.manufacturer} ${aed.model ?? ""}`; // Manufacturer
                     if (aed.cabinet) popupContent +=
-                        `<br><b>Kast:</b> ${cabinet}`; // Case
+                        `<br><b>{{ __('defibrillator.cabinet') }}:</b> ${cabinet}`; // Case
                     if (aed.cabinet_manufacturer) popupContent +=
-                        `<br><b>Kast fabrikant:</b> ${aed.cabinet_manufacturer}`; // Case manufacturer
+                        `<br><b>{{ __('defibrillator.cabinet_manufacturer') }}:</b> ${aed.cabinet_manufacturer}`; // Case manufacturer
                     if (aed.image) {
                         let directurl = aed.image;
                         if (directurl.includes("commons.wikimedia.org")) { // Wikimedia Commons
@@ -214,9 +215,9 @@
                             `<br><a target='_blank' href='${directurl}'><img class="popupimage" src='${directurl}'></a>`; // Image
                     }
                     if (aed.description) popupContent +=
-                        `<br><b>Opmerking:</b> ${aed.description}`; // Description
+                        `<br><b>{{ __('defibrillator.description') }}:</b> ${aed.description}`; // Description
                     popupContent +=
-                        `<br><a target='_blank' href='https://www.openstreetmap.org/node/${aed.osm_id}'>Bewerken op OpenStreetMap</a>`; // OSM link
+                        `<br><a target='_blank' href='https://www.openstreetmap.org/node/${aed.osm_id}'>{{ __('defibrillator.edit_on_osm') }}</a>`; // OSM link
 
                     aedMarkerGroup.addLayer(L.marker([aed.latitude, aed.longitude], {
                         icon: icon
@@ -228,13 +229,13 @@
             function parseOpeningHours(hours) {
                 let returnstring = "";
 
-                hours = hours.replace("Mo", "Ma");
-                hours = hours.replace("Tu", "Di");
-                hours = hours.replace("We", "Wo");
-                hours = hours.replace("Th", "Do");
-                hours = hours.replace("Fr", "Vr");
-                hours = hours.replace("Sa", "Za");
-                hours = hours.replace("Su", "Zo");
+                hours = hours.replace("Mo", "{{ __('days.mo') }}");
+                hours = hours.replace("Tu", "{{ __('days.tu') }}");
+                hours = hours.replace("We", "{{ __('days.we') }}");
+                hours = hours.replace("Th", "{{ __('days.th') }}");
+                hours = hours.replace("Fr", "{{ __('days.fr') }}");
+                hours = hours.replace("Sa", "{{ __('days.sa') }}");
+                hours = hours.replace("Su", "{{ __('days.su') }}");
 
                 let strings = hours.split(";");
                 strings.forEach(timestring => {

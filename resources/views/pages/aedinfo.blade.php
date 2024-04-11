@@ -1,9 +1,9 @@
 @extends('pages.layout')
 
-@section('title', 'Wat is een AED?')
+@section('title', __('pages.what_is_aed'))
 
 @section('content')
-    <h1 class="mt-5">Wat is een AED?</h1>
+    <h1 class="mt-5">{{ __('pages.what_is_aed') }}</h1>
 
     <div class="row">
         <div class="col-12 col-md-6">
