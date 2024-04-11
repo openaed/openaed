@@ -164,7 +164,7 @@
                         case "vertical_door":
                             cabinet = "Verticale deur";
                             break;
-                        case "none":
+                        case "no":
                             cabinet = "Geen";
                             break;
                         case "twist":
