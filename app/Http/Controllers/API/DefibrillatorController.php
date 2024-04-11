@@ -100,12 +100,13 @@ class DefibrillatorController extends Controller
         $start = Carbon::now();
 
         // Get max updated_at from Defibrillator
-        $lastUpdate = Carbon::parse(Defibrillator::max('updated_at'));
+        $lastSyncedAt = Defibrillator::max('synced_at');
+        $lastSync = Carbon::parse($lastSyncedAt);
 
-        if ($lastUpdate && !$all) { // if $all is true, get all defibrillators
-            $year = $lastUpdate->year;
-            $month = $lastUpdate->format('m');
-            $day = $lastUpdate->format('d');
+        if ($lastSyncedAt && !$all) { // if $all is true, get all defibrillators
+            $year = $lastSync->year;
+            $month = $lastSync->format('m');
+            $day = $lastSync->format('d');
 
             $time = "%28newer%3A%22{$year}-{$month}-{$day}T00%3A00%3A00Z%22%29";
         } else { // Fresh database - no last update yet
@@ -116,7 +117,13 @@ class DefibrillatorController extends Controller
         $sync = Synchronisation::create(['start' => $start, 'status' => 'requesting', 'full' => $all]);
 
         try {
-            $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A3600047796%29-%3E.searchArea%3B%0Anode%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29{$time}%3B%0Aout%20geom%3B%0A";
+            $region = config('app.region') ?? 3600047796; // Get region from config (default: 3600058193 - The Netherlands)
+            // if $region contains a ;
+            if (strpos($region, ';') !== false) {
+                $region = explode(';', $region);
+                $region = implode(',', $region);
+            }
+            $overpass = "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Aarea%28id%3A{$region}%29-%3E.searchArea%3B%0Anode%5B%22emergency%22%3D%22defibrillator%22%5D%28area.searchArea%29{$time}%3B%0Aout%20geom%3B%0A";
 
             $baseNominatim = "https://nominatim.openstreetmap.org/lookup?osm_ids=N";
 
