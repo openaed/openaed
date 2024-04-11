@@ -96,6 +96,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default coordinates
+    |--------------------------------------------------------------------------
+    |
+    | The default coordinates to load the map for new users.
+    | Defaults to the Netherlands.
+    |
+    */
+    'default_coordinates' => [
+        'lat' => env('DEFAULT_LAT', 52.096),
+        'lon' => env('DEFAULT_LON', 5.548),
+        'zoom' => env('DEFAULT_ZOOM', 8),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |

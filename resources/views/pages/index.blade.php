@@ -63,7 +63,9 @@
                 map.setView([localStorage.getItem("lat"), localStorage.getItem("lon")], localStorage.getItem(
                     "zoom"));
             } else {
-                map.setView([52.096, 5.548], 8); // Netherlands
+                map.setView([{{ config('app.default_coordinates.lat') }},
+                    {{ config('app.default_coordinates.lon') }}
+                ], {{ config('app.default_coordinates.zoom') }});
             }
 
             map.on('moveend', () => {
