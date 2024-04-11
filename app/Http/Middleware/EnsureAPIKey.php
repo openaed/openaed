@@ -38,14 +38,14 @@ class EnsureAPIKey
             return response()->json(["message" => "Blocked"], 401);
         }
 
-        $whitelistedIPs = config('app.whitelisted_ips');
-        $whitelistedIPs = explode(';', $whitelistedIPs);
+        $whitelistedDomains = config('app.whitelisted_domains');
+        $whitelistedDomains = explode(";", $whitelistedDomains);
 
-        if ($apiKey === null && !in_array($request->ip(), $whitelistedIPs)) {
+        if ($apiKey === null && !in_array($referer, $whitelistedDomains)) {
             return response()->json(["message" => "No API key provided"], 401);
         }
 
-        if ($apiKey != null && !in_array($referer, ["openaed.nl", "openaed.test"])) {
+        if ($apiKey != null && !in_array($referer, $whitelistedDomains)) {
             // Check if the API key exists
             $dbKey = APIKey::where('key', $apiKey)->first();
 

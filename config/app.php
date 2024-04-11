@@ -92,7 +92,7 @@ return [
     | Separate multiple IP addresses with a semicolon.
     |
     */
-    'whitelisted_ips' => env('WHITELISTED_IPS', '127.0.0.1'),
+    'whitelisted_domains' => env('WHITELISTED_DOMAINS', ''),
 
     /*
     |--------------------------------------------------------------------------
