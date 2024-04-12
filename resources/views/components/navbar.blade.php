@@ -21,6 +21,9 @@
                 <a target="_blank" href="https://patreon.com/OpenAED" class="nav-link" title="Patreon">Patreon</a>
                 <a target="_blank" href="https://github.com/openaed" class="nav-link" title="GitHub"><i
                         class="bi bi-github"></i></a>
+                <div class="ms-5">
+                    <x-language-select />
+                </div>
             </div>
         </div>
     </div>
