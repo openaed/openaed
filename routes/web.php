@@ -46,3 +46,5 @@ Route::get('/statistics', function () {
         'aedPerOperator' => $aedPerOperator
     ]);
 })->name('statistics');
+
+Route::get('/lang/{lang}', 'App\Http\Controllers\LanguageController@switch')->name('lang.switch');
