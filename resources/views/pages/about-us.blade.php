@@ -144,7 +144,7 @@
                         gepflegt wird.
                         Möchten Sie zu OpenAED beitragen? Fügen Sie AEDs zu OpenStreetMap hinzu und sie werden automatisch am
                         nächsten Tag auf der OpenAED-Karte sichtbar.<br>
-                        Lesen Sie mehr in der <a href="#">OpenStreetMap
+                        Lesen Sie mehr in der <a href="https://wiki.openstreetmap.org/wiki/DE:Beginners%27_guide">OpenStreetMap
                             Einsteigeranleitung</a>.
                     </p>
 
