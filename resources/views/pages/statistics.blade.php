@@ -7,8 +7,8 @@
 
     <div class="col-12 mb-3">
         {!! __('statistics.current', [
-            'amount' => '<span class="text-primary fw-bold">' . $totalAEDs . '</span>',
-            'cities' => '<span class="text-primary fw-bold">' . $distinctCities . '</span>',
+            'amount' => '<span class="text-primary fw-bold">' . number_format($totalAEDs) . '</span>',
+            'cities' => '<span class="text-primary fw-bold">' . number_format($distinctCities) . '</span>',
         ]) !!}
 
         <div class="row">
