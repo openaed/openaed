@@ -242,6 +242,12 @@ return [
     'webhooks' => [
         'sync' => env('DISCORD_WEBHOOK_SYNC'),
         'error' => env('DISCORD_WEBHOOK_ERROR'),
+    ],
+
+    'map_tiles' => env('MAP_TILES', 'osm-carto'),
+
+    'seo' => [
+        'description' => env('SEO_DESCRIPTION')
     ]
 
 ];

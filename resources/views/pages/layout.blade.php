@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="{{ config('app.locale') }}">
 
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,9 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/logos/openaed.png') }}">
-    <meta property="og:description"
-        content="OpenAED is een open-source project dat als doel heeft om alle AED's in Nederland in kaart te brengen.">
+    <meta property="og:description" content="{{ config('app.seo.description') }}">
     <meta property="og:site_name" content="{{ config('app.name') }}">
-    <meta property="og:locale" content="nl_NL">
+    <meta property="og:locale" content="{{ config('app.locale') }}">
 
     <meta name="google-adsense-account" content="{{ config('app.adsense_publisher_id') }}">
 
