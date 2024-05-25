@@ -178,7 +178,7 @@ class DefibrillatorController extends Controller
 
                     $context = stream_context_create($options);
 
-                    $nominatim = json_decode(file_get_contents($baseNominatim . $defibrillator['id'] . "&format=json", false, $context), true)[0];
+                    $nominatim = json_decode(file_get_contents($baseNominatim . $defibrillator['id'] . "&format=json&accept_language" . config('app.locale'), false, $context), true)[0];
                     if (isset($nominatim['address']['city'])) {
                         $defibModel->city = $nominatim['address']['city'] ?? null;
                     } else if (isset($nominatim['address']['town'])) {
