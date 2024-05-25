@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="{{ config('app.url') }}">
-            <img src="{{ asset('logo.svg') }}" alt="Logo" class="d-inline-block align-text-top"
+            <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="d-inline-block align-text-top"
                 height="50vh">&nbsp;<span class="ms-2 fw-medium fs-4">{{ config('app.name') }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
