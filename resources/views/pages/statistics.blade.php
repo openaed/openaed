@@ -24,8 +24,12 @@
                     <tbody>
                         @foreach ($aedPerRegion as $aeds)
                             <tr>
-                                <td class="col-8">{{ $aeds->region }}</td>
-                                <td class="col-4">{{ $aeds->total }}</td>
+                                <td class="col-8">
+                                    {{ $aeds->region }}
+                                </td>
+                                <td class="col-4">
+                                    {{ number_format($aeds->total, 0, __('common.decimal-separator'), __('common.thousands-separator')) }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -44,7 +48,9 @@
                         @foreach ($aedPerCity as $aeds)
                             <tr>
                                 <td class="col-8">{{ $aeds->city }} ({{ $aeds->region }})</td>
-                                <td class="col-4">{{ $aeds->total }}</td>
+                                <td class="col-4">
+                                    {{ number_format($aeds->total, 0, __('common.decimal-separator'), __('common.thousands-separator')) }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -63,7 +69,9 @@
                         @foreach ($aedPerOperator as $aeds)
                             <tr>
                                 <td class="col-8">{{ $aeds->operator }}</td>
-                                <td class="col-4">{{ $aeds->total }}</td>
+                                <td class="col-4">
+                                    {{ number_format($aeds->total, 0, __('common.decimal-separator'), __('common.thousands-separator')) }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
