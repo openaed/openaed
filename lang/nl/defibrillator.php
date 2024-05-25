@@ -1,8 +1,9 @@
 <?php
 
 return [
+    'plural' => 'AED\'s',
     'city' => 'Stad',
-    'province' => 'Provincie',
+    'region' => 'Provincie',
     'osm_id' => 'OSM ID',
     'latitude' => 'Breedtegraad',
     'longitude' => 'Lengtegraad',

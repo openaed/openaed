@@ -5,7 +5,7 @@ return [
     'per_province' => 'Per region',
     'per_city' => 'Per city',
     'per_operator' => 'Per operator',
-    'province' => 'Region',
+    'region' => 'Region',
     'city' => 'City',
     'operator' => 'Operator',
 ];

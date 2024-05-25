@@ -17,14 +17,14 @@
                 <table class="table table-striped table-fixed">
                     <thead>
                         <tr>
-                            <th class="col-8">{{ __('statistics.province') }}</th>
-                            <th class="col-4">AED's</th>
+                            <th class="col-8">{{ __('statistics.region') }}</th>
+                            <th class="col-4">{{ __('defibrillator.plural') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($aedPerProvince as $aeds)
+                        @foreach ($aedPerRegion as $aeds)
                             <tr>
-                                <td class="col-8">{{ $aeds->province }}</td>
+                                <td class="col-8">{{ $aeds->region }}</td>
                                 <td class="col-4">{{ $aeds->total }}</td>
                             </tr>
                         @endforeach
@@ -37,13 +37,13 @@
                     <thead>
                         <tr>
                             <th class="col-8">{{ __('statistics.city') }}</th>
-                            <th class="col-4">AED's</th>
+                            <th class="col-4">{{ __('defibrillator.plural') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($aedPerCity as $aeds)
                             <tr>
-                                <td class="col-8">{{ $aeds->city }} ({{ $aeds->province }})</td>
+                                <td class="col-8">{{ $aeds->city }} ({{ $aeds->region }})</td>
                                 <td class="col-4">{{ $aeds->total }}</td>
                             </tr>
                         @endforeach
@@ -56,7 +56,7 @@
                     <thead>
                         <tr>
                             <th class="col-8">{{ __('statistics.operator') }}</th>
-                            <th class="col-4">AED's</th>
+                            <th class="col-4">{{ __('defibrillator.plural') }}</th>
                         </tr>
                     </thead>
                     <tbody>

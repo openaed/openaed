@@ -15,7 +15,7 @@ class Defibrillator extends Model
     protected $fillable = [
         'id',
         'city',
-        'province',
+        'region',
         'osm_id',
         'latitude',
         'longitude',

@@ -65,10 +65,10 @@
             <ul class="ps-3">
                 <li>{{ __('api.all_aeds') }}<br><code>GET {{ route('api.aed.all') }}</code></li>
                 <li>{{ __('api.all_aeds_city') }}<br><code>GET
-                        {{ str_replace('city', '{city}', str_replace('region', '{region}', route('api.aed.city', ['city' => 'city', 'province' => 'region']))) }}</code>
+                        {{ str_replace('city', '{city}', str_replace('region', '{region}', route('api.aed.city', ['city' => 'city', 'region' => 'region']))) }}</code>
                 </li>
                 <li>{{ __('api.all_aeds_region') }}<br><code>GET
-                        {{ str_replace('region', '{region}', route('api.aed.province', ['province' => 'region'])) }}</code>
+                        {{ str_replace('region', '{region}', route('api.aed.province', ['region' => 'region'])) }}</code>
                 </li>
             </ul>
         </div>
@@ -82,7 +82,7 @@
                         <li>"id": 56,</li>
                         <li>"osm_id": 6640032350,</li>
                         <li>"city": "Nijmegen",</li>
-                        <li>"province": "Gelderland",</li>
+                        <li>"region": "Gelderland",</li>
                         <li>"latitude": "51.8453705",</li>
                         <li>"longitude": "5.8666328",</li>
                         <li>"access": "yes",</li>

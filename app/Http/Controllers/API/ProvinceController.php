@@ -17,7 +17,7 @@ class ProvinceController extends Controller
      */
     public function all(): JsonResponse
     {
-        $provinces = Province::all()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
-        return response()->json(AttributedResponse::new($provinces));
+        $regions = Province::all()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
+        return response()->json(AttributedResponse::new($regions));
     }
 }

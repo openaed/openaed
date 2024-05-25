@@ -34,14 +34,14 @@ Route::get('/statistics', function () {
     $distinctCities = \App\Models\Defibrillator::select('city')->distinct()->where('city', '!=', null)->get()->count();
 
     $totalAEDs = \App\Models\Defibrillator::all()->count();
-    $aedPerProvince = \App\Models\Defibrillator::select('province', \DB::raw('count(*) as total'))->groupBy('province')->where('province', '!=', null)->get();
-    $aedPerCity = \App\Models\Defibrillator::select('city', \DB::raw('count(*) as total'), 'province')->groupBy('city', 'province')->where('city', '!=', null)->orderBy('total', 'desc')->get();
+    $aedPerRegion = \App\Models\Defibrillator::select('region', \DB::raw('count(*) as total'))->groupBy('region')->where('region', '!=', null)->get();
+    $aedPerCity = \App\Models\Defibrillator::select('city', \DB::raw('count(*) as total'), 'region')->groupBy('city', 'region')->where('city', '!=', null)->orderBy('total', 'desc')->get();
     $aedPerOperator = \App\Models\Defibrillator::select('operator', \DB::raw('count(*) as total'))->groupBy('operator')->where('operator', '!=', null)->orderBy('total', 'desc')->get();
 
     return view('pages.statistics', [
         'distinctCities' => $distinctCities,
         'totalAEDs' => $totalAEDs,
-        'aedPerProvince' => $aedPerProvince,
+        'aedPerRegion' => $aedPerRegion,
         'aedPerCity' => $aedPerCity,
         'aedPerOperator' => $aedPerOperator
     ]);

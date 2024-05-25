@@ -17,16 +17,16 @@ class DefibrillatorController extends Controller
     /**
      * Get all defibrillators in a city
      *
-     * @param string $province The province to search in
+     * @param string $region The province to search in
      * @param string $city The city to search in
      * @return JsonResponse
      */
-    public function getByCity($province, $city): JsonResponse
+    public function getByCity($region, $city): JsonResponse
     {
-        $defibrillators = Defibrillator::where('city', $city)->where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
-        $provinceObj = Province::where('name', $province)->first();
+        $defibrillators = Defibrillator::where('city', $city)->where('region', $region)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
+        $regionObj = Province::where('name', $region)->first();
         // If province does not exist, return 400 (Bad Request)
-        if ($provinceObj == null) {
+        if ($regionObj == null) {
             return response()->json(["message" => "Invalid province", "options" => Province::all()->pluck('name')], 400);
         }
         return response()->json(AttributedResponse::new($defibrillators));
@@ -35,17 +35,17 @@ class DefibrillatorController extends Controller
     /**
      * Get all defibrillators in a province
      *
-     * @param string $province The province to search in
+     * @param string $region The province to search in
      * @return JsonResponse
      */
-    public function getByProvince($province): JsonResponse
+    public function getByProvince($region): JsonResponse
     {
-        $provinceObj = Province::where('name', $province)->first();
+        $regionObj = Province::where('name', $region)->first();
         // If province does not exist, return 400 (Bad Request)
-        if ($provinceObj == null) {
+        if ($regionObj == null) {
             return response()->json(["message" => "Invalid province", "options" => Province::all()->pluck('name')], 400);
         }
-        $defibrillators = Defibrillator::where('province', $province)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
+        $defibrillators = Defibrillator::where('region', $region)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         return response()->json(AttributedResponse::new($defibrillators));
     }
 
@@ -192,11 +192,11 @@ class DefibrillatorController extends Controller
                     }
 
                     if (isset($nominatim['address']['state'])) {
-                        $defibModel->province = $nominatim['address']['state'];
+                        $defibModel->region = $nominatim['address']['state'];
                     } else if (isset($nominatim['address']['municipality'])) { // Fallback for Caribbean Netherlands (Bonaire, Sint Eustatius, Saba)
-                        $defibModel->province = $nominatim['address']['municipality'];
+                        $defibModel->region = $nominatim['address']['municipality'];
                     } else {
-                        $defibModel->province = null;
+                        $defibModel->region = null;
                     }
 
                 }

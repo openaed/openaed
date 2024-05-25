@@ -48,7 +48,7 @@ class Discord
 
         $lastModified = \App\Models\Defibrillator::orderBy('updated_at', 'desc')->limit(3)->get();
         $lastModified = $lastModified->map(function ($item) {
-            return "[{$item->city}, {$item->province}](https://openstreetmap.org/node/{$item->osm_id})";
+            return "[{$item->city}, {$item->region}](https://openstreetmap.org/node/{$item->osm_id})";
         })->implode("\n");
 
         $lastModified = "**Laatst aangepaste AEDs**\n$lastModified";
