@@ -44,6 +44,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
     Route::get('{province}/{city}', [DefibrillatorController::class, 'getByCity'])->name('api.aed.city');
 
     Route::get('{province}', [DefibrillatorController::class, 'getByProvince'])->name('api.aed.province');
+
 }));
 
-Route::get('import', [DefibrillatorController::class, 'import'])->name('api.aed.import');
+Route::get('stats', [DefibrillatorController::class, 'stats'])->name('api.aed.stats');
+
+// Route::get('import', [DefibrillatorController::class, 'import'])->name('api.aed.import');

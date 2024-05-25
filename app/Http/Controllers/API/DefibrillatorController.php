@@ -258,4 +258,15 @@ class DefibrillatorController extends Controller
             return 0;
         }
     }
+
+    public function stats()
+    {
+        $total = Defibrillator::count();
+        $cities = Defibrillator::select('city')->distinct()->get()->count();
+
+        return response()->json([
+            'total' => $total,
+            'cities' => $cities
+        ]);
+    }
 }
