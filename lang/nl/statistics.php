@@ -5,7 +5,7 @@ return [
     'per_province' => 'Per regio',
     'per_city' => 'Per woonplaats',
     'per_operator' => 'Per beheerder',
-    'province' => 'Provincie',
+    'province' => 'Regio',
     'city' => 'Woonplaats',
     'operator' => 'Beheerder',
 ];
