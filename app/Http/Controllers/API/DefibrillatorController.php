@@ -17,7 +17,7 @@ class DefibrillatorController extends Controller
     /**
      * Get all defibrillators in a city
      *
-     * @param string $region The province to search in
+     * @param string $region The region to search in
      * @param string $city The city to search in
      * @return JsonResponse
      */
@@ -33,9 +33,9 @@ class DefibrillatorController extends Controller
     }
 
     /**
-     * Get all defibrillators in a province
+     * Get all defibrillators in a region
      *
-     * @param string $region The province to search in
+     * @param string $region The region to search in
      * @return JsonResponse
      */
     public function getByProvince($region): JsonResponse
@@ -43,7 +43,7 @@ class DefibrillatorController extends Controller
         $regionObj = Province::where('name', $region)->first();
         // If province does not exist, return 400 (Bad Request)
         if ($regionObj == null) {
-            return response()->json(["message" => "Invalid province", "options" => Province::all()->pluck('name')], 400);
+            return response()->json(["message" => "Invalid region", "options" => Province::all()->pluck('name')], 400);
         }
         $defibrillators = Defibrillator::where('region', $region)->get()->each->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         return response()->json(AttributedResponse::new($defibrillators));

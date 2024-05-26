@@ -68,7 +68,7 @@
                         {{ str_replace('city', '{city}', str_replace('region', '{region}', route('api.aed.city', ['city' => 'city', 'region' => 'region']))) }}</code>
                 </li>
                 <li>{{ __('api.all_aeds_region') }}<br><code>GET
-                        {{ str_replace('region', '{region}', route('api.aed.province', ['region' => 'region'])) }}</code>
+                        {{ str_replace('region', '{region}', route('api.aed.region', ['region' => 'region'])) }}</code>
                 </li>
             </ul>
         </div>

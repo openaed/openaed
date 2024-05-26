@@ -23,17 +23,17 @@ Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
         return [
             "message" => "Welcome to the OpenAED API",
             "endpoints" => [
-                "GET /v1/api/provinces" => "Get all provinces",
+                "GET /v1/api/regions" => "Get all regions",
                 "GET /v1/api/all" => "Get all AEDs",
                 "GET /v1/api/basic" => "Get all AEDs with basic information - ID, coordinates, access",
                 "GET /v1/api/aed/{id}" => "Get a specific AED",
-                "GET /v1/api/{province}" => "Get all AEDs in a specific province",
-                "GET /v1/api/{province}/{city}" => "Get all AEDs in a specific city",
+                "GET /v1/api/{region}" => "Get all AEDs in a specific region",
+                "GET /v1/api/{region}/{city}" => "Get all AEDs in a specific city",
             ],
         ];
     })->name('api.index');
 
-    Route::get('provinces', [ProvinceController::class, 'all'])->name('api.provinces');
+    Route::get('regions', [ProvinceController::class, 'all'])->name('api.regions');
 
     Route::get('all', [DefibrillatorController::class, 'all'])->name('api.aed.all');
 
@@ -41,9 +41,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
 
     Route::get('aed/{id}', [DefibrillatorController::class, 'getById'])->name('api.aed.one');
 
-    Route::get('{province}/{city}', [DefibrillatorController::class, 'getByCity'])->name('api.aed.city');
+    Route::get('{region}/{city}', [DefibrillatorController::class, 'getByCity'])->name('api.aed.city');
 
-    Route::get('{province}', [DefibrillatorController::class, 'getByProvince'])->name('api.aed.province');
+    Route::get('{region}', [DefibrillatorController::class, 'getByRegion'])->name('api.aed.region');
 
 }));
 
