@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Synchronisation;
 use Carbon\Carbon;
+use App\Helpers\Git;
 use App\Helpers\Discord;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Models\Defibrillator;
+use App\Models\Synchronisation;
 use Illuminate\Http\JsonResponse;
 use App\Models\AttributedResponse;
 use App\Http\Controllers\Controller;
@@ -265,8 +266,9 @@ class DefibrillatorController extends Controller
         $cities = Defibrillator::select('city')->distinct()->get()->count();
 
         return response()->json([
-            'total' => $total,
-            'cities' => $cities
+            'defibrillators' => $total,
+            'cities' => $cities,
+            'branch' => Git::getGitInfo()['branch'],
         ]);
     }
 }
