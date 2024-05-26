@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->bigInteger('osm_id')->unique();
             $table->string('city')->nullable();
-            $table->string('region')->nullable();
+            $table->string('province')->nullable();
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
             $table->string('access')->nullable();
