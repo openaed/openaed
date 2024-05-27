@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Helpers\Git;
 use App\Helpers\Discord;
 use App\Models\Province;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Models\Defibrillator;
 use App\Models\Synchronisation;
@@ -264,11 +265,20 @@ class DefibrillatorController extends Controller
     {
         $total = Defibrillator::count();
         $cities = Defibrillator::select('city')->distinct()->get()->count();
+        // get unique visitors using the access_logs table, containing an 'ip' and 'created_at' column
+        $uniqueVisitorsToday = AccessLog::whereDate('created_at', Carbon::today())->distinct('ip')->count();
+        $uniqueVisitorsSevenDays = AccessLog::whereDate('created_at', '>=', Carbon::today()->subDays(7))->distinct('ip')->count();
+        $uniqueVisitorsTotal = AccessLog::distinct('ip')->count();
 
         return response()->json([
             'defibrillators' => $total,
             'cities' => $cities,
             'branch' => Git::getGitInfo()['branch'],
+            'unique_visitors' => [
+                'today' => $uniqueVisitorsToday,
+                'seven_days' => $uniqueVisitorsSevenDays,
+                'total' => $uniqueVisitorsTotal
+            ]
         ]);
     }
 }
