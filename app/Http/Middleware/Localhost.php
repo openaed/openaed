@@ -23,6 +23,7 @@ class Localhost
 
     private function isLocalhost($whitelist = ['127.0.0.1', '::1'])
     {
+        array_push($whitelist, $_SERVER['SERVER_ADDR']);
         return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
     }
 }
