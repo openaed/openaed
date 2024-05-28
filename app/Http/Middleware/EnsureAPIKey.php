@@ -43,7 +43,7 @@ class EnsureAPIKey
         $whitelistedDomains = config('app.whitelisted_domains');
         $whitelistedDomains = explode(";", $whitelistedDomains);
 
-        if ($apiKey === null) {
+        if ($apiKey === null && in_array($referer, $whitelistedDomains) == false) {
             return response()->json(["message" => "No API key provided"], 401);
         }
 
