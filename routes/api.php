@@ -17,6 +17,12 @@ use App\Http\Controllers\API\DefibrillatorController;
 |
 */
 
+Route::group(['prefix' => 'v1', 'middleware' => ['localhost']], (function () {
+
+    Route::get('/stats', [DefibrillatorController::class, 'stats'])->name('api.stats');
+
+}));
+
 Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
 
     Route::get('/', function () {
@@ -46,7 +52,3 @@ Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
     Route::get('{region}', [DefibrillatorController::class, 'getByRegion'])->name('api.aed.region');
 
 }));
-
-Route::get('stats', [DefibrillatorController::class, 'stats'])->name('api.aed.stats');
-
-// Route::get('import', [DefibrillatorController::class, 'import'])->name('api.aed.import');

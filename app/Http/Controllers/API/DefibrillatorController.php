@@ -40,7 +40,7 @@ class DefibrillatorController extends Controller
      * @param string $region The region to search in
      * @return JsonResponse
      */
-    public function getByProvince($region): JsonResponse
+    public function getByRegion($region): JsonResponse
     {
         $regionObj = Province::where('name', $region)->first();
         // If province does not exist, return 400 (Bad Request)
@@ -265,7 +265,6 @@ class DefibrillatorController extends Controller
     {
         $total = Defibrillator::count();
         $cities = Defibrillator::select('city')->distinct()->get()->count();
-        // get unique visitors using the access_logs table, containing an 'ip' and 'created_at' column
         $uniqueVisitorsToday = AccessLog::whereDate('created_at', Carbon::today())->distinct('ip')->count();
         $uniqueVisitorsSevenDays = AccessLog::whereDate('created_at', '>=', Carbon::today()->subDays(7))->distinct('ip')->count();
         $uniqueVisitorsTotal = AccessLog::distinct('ip')->count();
@@ -273,7 +272,7 @@ class DefibrillatorController extends Controller
         return response()->json([
             'defibrillators' => $total,
             'cities' => $cities,
-            'branch' => Git::getGitInfo()['branch'],
+            'git' => Git::getGitInfo(),
             'unique_visitors' => [
                 'today' => $uniqueVisitorsToday,
                 'seven_days' => $uniqueVisitorsSevenDays,

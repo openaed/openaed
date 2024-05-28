@@ -19,6 +19,9 @@ class EnsureAPIKey
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($this->isLocalhost()) // always allow localhost
+            return $next($request);
+
         $referer = parse_url($request->headers->get('referer'))['host'] ?? "";
         $ip = $request->ip();
         $apiKey = $request->input('key');
@@ -30,18 +33,17 @@ class EnsureAPIKey
         $log->api_key = $apiKey ?? null;
         $log->save();
 
-
         // Check if the IP is blacklisted
         $blacklistedIP = BlacklistedIP::where('ip', $ip)->first();
 
         if ($blacklistedIP !== null) {
-            return response()->json(["message" => "Blocked"], 401);
+            return response()->json(["message" => "Unauthorised"], 403);
         }
 
         $whitelistedDomains = config('app.whitelisted_domains');
         $whitelistedDomains = explode(";", $whitelistedDomains);
 
-        if ($apiKey === null && in_array($referer, $whitelistedDomains) == false) {
+        if ($apiKey === null) {
             return response()->json(["message" => "No API key provided"], 401);
         }
 
@@ -59,5 +61,10 @@ class EnsureAPIKey
         }
 
         return $next($request);
+    }
+
+    private function isLocalhost($whitelist = ['127.0.0.1', '::1'])
+    {
+        return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
     }
 }
