@@ -36,7 +36,7 @@
 
 <body>
     <x-navbar />
-    <div class="{{ $container ?? 'container' }}">
+    <div class="{{ $container ?? 'container' }} {{ isset($page) && $page == true ? 'page-layout' : '' }}">
         @yield('content')
     </div>
 </body>

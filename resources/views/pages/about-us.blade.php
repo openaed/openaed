@@ -1,4 +1,5 @@
-@extends('pages.layout')
+@extends('pages.layout', ['page' => true])
+
 
 @section('title', __('pages.about_us'))
 
