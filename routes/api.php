@@ -45,6 +45,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['apikey']], (function () {
 
     Route::get('basic', [DefibrillatorController::class, 'basic'])->name('api.aed.basic');
 
+    Route::get('geojson', [DefibrillatorController::class, 'geojson'])->name('api.aed.geojson');
+
     Route::get('aed/{id}', [DefibrillatorController::class, 'getById'])->name('api.aed.one');
 
     Route::get('{region}/{city}', [DefibrillatorController::class, 'getByCity'])->name('api.aed.city');

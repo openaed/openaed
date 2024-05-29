@@ -280,4 +280,32 @@ class DefibrillatorController extends Controller
             ]
         ]);
     }
+
+    public function geojson()
+    {
+        $defibrillators = Defibrillator::all();
+        $geojson = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        foreach ($defibrillators as $defibrillator) {
+            $geojson['features'][] = [
+                'type' => 'Feature',
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [
+                        $defibrillator->longitude,
+                        $defibrillator->latitude
+                    ]
+                ],
+                'properties' => [
+                    'id' => $defibrillator->id,
+                    'access' => $defibrillator->access,
+                ]
+            ];
+        }
+
+        return response()->json($geojson);
+    }
 }

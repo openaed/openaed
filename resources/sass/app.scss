@@ -125,6 +125,30 @@ body:not(:has(> .page-layout)) {
     margin: 1rem;
 }
 
+.aed-marker {
+    height: 50px;
+    width: 59px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.aed-marker.regular {
+    background-image: url("http://openaed.test/icons/aed_Regular.png");
+}
+
+.aed-marker.permissive {
+    background-image: url("http://openaed.test/icons/aed_Permissive.png");
+}
+
+.aed-marker.private {
+    background-image: url("http://openaed.test/icons/aed_Private.png");
+}
+
+.aed-marker.unknown {
+    background-image: url("http://openaed.test/icons/aed_Unknown.png");
+}
+
 // mobile
 @media (max-width: 768px) {
     #map {

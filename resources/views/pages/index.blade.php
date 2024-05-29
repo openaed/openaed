@@ -47,7 +47,72 @@
     </div>
     <div id="map"></div>
 
-    <script type="text/javascript">
+    @push('footer-scripts')
+        <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+
+        <script>
+            const map = new maplibregl.Map({
+                container: 'map', // container id
+                style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // style URL
+                center: [{{ config('app.default_coordinates.lon') }},
+                    {{ config('app.default_coordinates.lat') }}
+                ], // starting position [lng, lat]
+                zoom: {{ config('app.default_coordinates.zoom') }}, // starting zoom
+                attributionControl: false
+            });
+
+            map.addControl(new maplibregl.AttributionControl(), 'top-right');
+
+            if (localStorage.getItem("lat")) {
+                map.easeTo({
+                    center: [localStorage.getItem("lon"), localStorage.getItem("lat")],
+                    zoom: localStorage.getItem("zoom")
+                });
+            }
+
+            map.on('moveend', () => {
+                localStorage.setItem("lat", map.getCenter().lat);
+                localStorage.setItem("lon", map.getCenter().lng);
+                localStorage.setItem("zoom", map.getZoom());
+            });
+
+            map.on('load', () => {
+                const allAEDURL = "{{ route('api.aed.basic') }}";
+                fetch(allAEDURL)
+                    .then(response => response.json())
+                    .then(data => {
+                        const aeds = data.result;
+                        aeds.forEach(aed => {
+                            const icon = document.createElement('div');
+                            icon.classList.add('aed-marker');
+
+                            if (aed.access == "permissive") {
+                                icon.classList.add('permissive');
+                            } else if (aed.access == "unknown" || aed.access == null) {
+                                icon.classList.add('unknown');
+                            } else if (aed.access == "private" || aed.access == "no") {
+                                icon.classList.add('private');
+                            } else {
+                                icon.classList.add('regular');
+                            }
+
+                            const marker = new maplibregl.Marker({
+                                    anchor: 'bottom',
+                                    offset: [0, 59],
+                                    element: icon
+                                })
+                                .setLngLat([aed.longitude, aed.latitude])
+                                .setPopup(new maplibregl.Popup().setHTML('hoi'))
+                                .addTo(map);
+
+                            icon.innerHTML = '';
+                        });
+                    });
+            });
+        </script>
+    @endpush
+
+    {{-- <script type="text/javascript">
         let map;
         window.addEventListener('DOMContentLoaded', function() {
             map = L.map("map");
@@ -324,5 +389,5 @@
 
             return popupContent;
         }
-    </script>
+    </script> --}}
 @endsection
